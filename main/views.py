@@ -10,7 +10,7 @@ def show_main(request):
         'harga': 'Rp 0',
         'description': 'kotak pensil',
         'rating': '1',
-        'image': 'https://krokotak.com/wp-content/uploads/2012/09/33.jpg'
+        'image': 'https://i.imgur.com/fHwFRmz.jpeg'
     }
 
     return render(request, "main.html", context)
