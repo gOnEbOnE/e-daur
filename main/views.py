@@ -6,8 +6,8 @@ def show_main(request):
         'web' : 'E-Daur',
         'fullname' : 'Christopher Matthew Hendarson',
         'npm' : '2306245592',
-        'nama' : 'kotak pensil',
-        'harga': 'Rp 0',
+        'name' : 'kotak pensil',
+        'price': 'Rp 0',
         'description': 'kotak pensil',
         'rating': '1',
         'image': 'https://i.imgur.com/fHwFRmz.jpeg'
