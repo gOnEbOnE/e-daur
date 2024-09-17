@@ -56,8 +56,24 @@ Menurut saya framework Django dijadikan sebagai permulaan pembelajaran pengemban
 Model pada Django disebut sebagai ORM (Object-Relational Mapping) salah satunya adalah karena model ini menghubungkan antara dunia objek dalam Python dengan dunia tabel di basis data yang berhubungan(relational Database) yang merupakan jenis basis data yang menyimpan, mengelola dan mengorgaisasi data dalam bentuk tabel (sering disebut relasi). ORM memungkinkan interaksii dengan basis data tanpa harus menulis SQL secara langsung.
 
 
+=====================================================================================================================================================================
 
+1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 
+Data delivery diperlukan dalam pengimplementasian sebuah platform karena dalam pengembangan suatu platform akan ada masa dimana kita perlu untuk mengirimkan data dari satu stack ke stack lainnya. Data yang dikirimkan bisa bermacam-macam bentuknya. Contoh dari format data yang umum digunakan antara lain adalah HTML, XML, dan JSON. Pada akhirnya Data delivery memungkinkan interaksi antara pengguna, sistem, dan data yang ada pada database.
 
+2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
 
+Menurut saya di antara XML atau JSON lebih baik antara satu dengan yang lainnya bergantung kepada kondisi. Ketika data memiliki struktur yang kompleks sehingga membutuhkan validasi data dengan level intensitas lebih tinggi seperti pada pertukaran data pada perbankan XML akan lebih unggul dikarenakan XML mendukung skema (XSD) yang mempermudah validasi struktur data. Namun XML perlu untuk diparse menggunakan XML parser sehingga tingkat fleksibilitasnya kurang baik dibandingkan JSON yang dapat diparse menggunakan fungsi JavaScript standar.
 
+Namun ketika menghadapi data yang menggunakan struktur data yang tidak kompleks JSON akan lebih baik. Penyebabnya adalah JSON lebih efisien karena ukurannya yang lebih kecil dibanding XML sehingga menjadi lebih cepat ketika akan digunakan, penyebab lainnya adalah karena dalam komunikasi client-server JSON lebih ringan, sehingga memungkinkan pertukaran data yang lebih cepat baik pada peramban internet maupun pada perangkat mobile. Hal inilah yang menyebabkan JSON lebih popular dibandingkan XML.
+
+3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+
+Fungsi tersebut digunakan untuk memvalidasi isi input dari form tersebut sesuai atau tidak dengan jenis field yang diminta, sesuai atau tidak dengan jumlah maksimal char yang diminta. Ketika field yang diisi tidak mencapai kriteria yang terdapat pada field tersebut maka is_valid() akan mengembalikan false dan form tidak akan tersubmit atau tersimpan.
+
+4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+
+csrf_token adalah token yang berfungsi sebagai security. Token ini di-generate secara otomatis oleh Django untuk mencegah seragnan berbahaya. Selain itu token csrf juga digunakan untuk memverifikasi bahwa permintaan yang datang dari form benar-benar berasal dari pengguna yang dituju dan bukan dari sumber eksternal yang jahat. Jika tidak menambahkan csrf_token pada form di Django, Django tidak dapat memberifikasi permintaan yang masuk berasal dari halaman yang sah atau bukan.
+
+Dengan tidak ditambahkannya token_csrf maka penyerang akan dapat melakukan serangan phishing yang mengakibatkan aplikasi yang kita bangun melakukan post yang bukan kita inginkan. Serangan-serangan lain pun dapat dilakukan oleh oknum-oknum yang jahat. Hal tersebut terjadi ketika penyerang memanfaatkan fakta bahwa pengguna mungkin telah login ke aplikasi web dan memiliki sesi yang aktif. Tanpa adanya token_csrf sesi aktif tersebut dapat digunakan oleh penyerang untuk melakukan banyak hal tidak bertanggung jawab.
