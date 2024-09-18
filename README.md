@@ -106,3 +106,16 @@ def show_json_by_id(request, id):
 fungsi fungsi di atas digunakan untuk mengidentifikasi objek-objek yang telah menjadi baik xml maupun JSON. Fungsi yang melakukan show dengan menggunakan id dapat mengembalikan objek dengan menggunakan id. Lalu dilanjut dengan menambahkan path routing pada urls.py yang terdapat pada direktori main agar fungsi-fungsi tersebut dapat kita akses sesuai dengan url yang tercantum.
 
 6. Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md
+
+   show_xml()
+   ![image](https://github.com/user-attachments/assets/763e0595-438c-4976-a6d1-3b6721f29730)
+
+   show_json()
+   ![image](https://github.com/user-attachments/assets/d44a4310-df42-41ee-b6e8-e51068fe7d97)
+
+   show_xml_by_id()
+   ![image](https://github.com/user-attachments/assets/fb14d252-7f28-4aa7-8ed6-9f932dacee32)
+
+   show_json_by_id()
+   ![image](https://github.com/user-attachments/assets/400d17b4-bd63-493b-8f4f-1c640270974d)
+
