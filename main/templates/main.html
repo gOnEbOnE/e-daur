@@ -20,24 +20,20 @@
 {% else %}
 <table>
   <tr>
-    <th>Material Name</th>
+    <th>Nama</th>
     <th>Time</th>
-    <th>Item</th>
-    <th>Material Quantity</th>
-    <th>Item Quantity</th>
-    <th>Notes</th>
+    <th>Harga</th>
+    <th>Deskripsi</th>
   </tr>
 
   {% comment %} Berikut cara memperlihatkan data material di bawah baris ini
   {% endcomment %}
   {% for material_entry in material_entries %}
   <tr>
-    <td>{{material_entry.material}}</td>
+    <td>{{material_entry.nama}}</td>
     <td>{{material_entry.time}}</td>
-    <td>{{material_entry.item}}</td>
-    <td>{{material_entry.material_quantity}}</td>
-    <td>{{material_entry.item_quantity}}</td>
-    <td>{{material_entry.notes}}</td>
+    <td>{{material_entry.harga}}</td>
+    <td>{{material_entry.deskripsi}}</td>
   </tr>
   {% endfor %}
 </table>
