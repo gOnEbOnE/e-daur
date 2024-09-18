@@ -77,3 +77,32 @@ Fungsi tersebut digunakan untuk memvalidasi isi input dari form tersebut sesuai 
 csrf_token adalah token yang berfungsi sebagai security. Token ini di-generate secara otomatis oleh Django untuk mencegah seragnan berbahaya. Selain itu token csrf juga digunakan untuk memverifikasi bahwa permintaan yang datang dari form benar-benar berasal dari pengguna yang dituju dan bukan dari sumber eksternal yang jahat. Jika tidak menambahkan csrf_token pada form di Django, Django tidak dapat memberifikasi permintaan yang masuk berasal dari halaman yang sah atau bukan.
 
 Dengan tidak ditambahkannya token_csrf maka penyerang akan dapat melakukan serangan phishing yang mengakibatkan aplikasi yang kita bangun melakukan post yang bukan kita inginkan. Serangan-serangan lain pun dapat dilakukan oleh oknum-oknum yang jahat. Hal tersebut terjadi ketika penyerang memanfaatkan fakta bahwa pengguna mungkin telah login ke aplikasi web dan memiliki sesi yang aktif. Tanpa adanya token_csrf sesi aktif tersebut dapat digunakan oleh penyerang untuk melakukan banyak hal tidak bertanggung jawab.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+Mengubah primary key yang pada awalnya incremental integer menjadi UUID untuk melindungi kita.Buat berkas baru pada direktori main dengan nama forms.py untuk membuat struktur form yang dapat menerima data Material Entry baru. Tambahkan fields dan juga model yang sesuai. Lalu melakukan from django.shortcuts import redirect dan melakukan import terhadap MaterialEntryForm yang sebelumnya sudah kita definisikan sebagai suatu class pada file forms.py, hal-hal tersebut diimplementasikan pada file views.py yang terdapat pada direktori main. Selannjutnya kita perlu menambahkan fungsi dengan parameter request untuk menampilkan form dan juga menyimpan form jika form sudah tervalidasi melalui request. Selanjutnya pada fungsi show_main() pada views.py kita ubah agar material_entries = MaterialEntry.objects.all() untuk mengobjektivikasi masukkan dari pengguna.
+
+Selanjutnya import fungsi create_material_entry yang terdapat pada views.py pada direktori main ke urls.py yang juga terdapat pada direktori main. Untuk membuat routing kita menambahkan create_product_entry untuk mengisi parameter-parameter pada path baru untuk merouting.
+
+langkah berikutnya, kita hanya perlu menambahkan create_material_entry.html pada direktori templates yang terdapat pada direktori main, file ini adalah template untuk form yang melakukan permintaan request terhadap create_material_entry(request) yang terdapat pada views.py.
+
+langkah terakhir adalah untuk menambahkan 4 fungsi untuk view pada views.py
+def show_xml(request):
+    data = MaterialEntry.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = MaterialEntry.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_xml_by_id(request, id):
+    data = MaterialEntry.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json_by_id(request, id):
+    data = MaterialEntry.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+fungsi fungsi di atas digunakan untuk mengidentifikasi objek-objek yang telah menjadi baik xml maupun JSON. Fungsi yang melakukan show dengan menggunakan id dapat mengembalikan objek dengan menggunakan id. Lalu dilanjut dengan menambahkan path routing pada urls.py yang terdapat pada direktori main agar fungsi-fungsi tersebut dapat kita akses sesuai dengan url yang tercantum.
+
+6. Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md
