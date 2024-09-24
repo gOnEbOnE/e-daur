@@ -57,7 +57,7 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) salah satunya 
 
 
 =====================================================================================================================================================================
-
+## tugas 3
 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 
 Data delivery diperlukan dalam pengimplementasian sebuah platform karena dalam pengembangan suatu platform akan ada masa dimana kita perlu untuk mengirimkan data dari satu stack ke stack lainnya. Data yang dikirimkan bisa bermacam-macam bentuknya. Contoh dari format data yang umum digunakan antara lain adalah HTML, XML, dan JSON. Pada akhirnya Data delivery memungkinkan interaksi antara pengguna, sistem, dan data yang ada pada database.
@@ -118,4 +118,77 @@ fungsi fungsi di atas digunakan untuk mengidentifikasi objek-objek yang telah me
 
    show_json_by_id()
    ![image](https://github.com/user-attachments/assets/400d17b4-bd63-493b-8f4f-1c640270974d)
+
+==============================================================================================================
+## tugas 4
+
+## Apa perbedaan antara HttpResponseRedirect() dan redirect()
+
+### HttpResponseRedirect()
+- **Definisi**: Respons HTTP yang secara eksplisit menginstruksikan browser untuk memuat ulang halaman yang berbeda. Ini merupakan metode standar dalam HTTP untuk mengalihkan pengguna ke URL lain.
+- **Penggunaan**: Memerlukan URL tujuan secara eksplisit sebagai argumen. Ini memberikan kontrol penuh atas URL tujuan tetapi meningkatkan risiko kesalahan ketik.
+- **Fleksibilitas**: Kurang fleksibel karena hanya berinteraksi dengan string URL. Ini membatasi penggunaannya dalam skenario di mana URL tujuan ditentukan secara dinamis.
+- **Contoh Penggunaan**: response = HttpResponseRedirect(reverse("main:show_main"))
+- **Keterbacaan Kode**: Kurang intuitif bagi pemula karena memerlukan penulisan URL secara manual. Ini dapat membuat kode kurang mudah dibaca dan dipahami.
+- **Kemudahan Penentuan URL**: Memerlukan penulisan URL secara manual, yang dapat rentan terhadap kesalahan.
+- **Mekanisme Internal**: Secara langsung menghasilkan objek `HttpResponseRedirect` yang berisi header HTTP `Location` dengan URL tujuan.
+
+### Redirect()
+- **Definisi**: Fungsi utilitas Django yang menyediakan cara yang lebih abstrak dan ringkas untuk membuat respons redirect. Fungsi ini menyembunyikan kompleksitas dalam pembuatan respons redirect HTTP.
+- **Penggunaan**: Dapat diberikan URL tujuan, nama view, atau objek model sebagai argumen. Ini memberikan fleksibilitas yang lebih tinggi, terutama saat menggunakan URL yang dinamis atau terkait dengan model data.
+- **Fleksibilitas**: Lebih fleksibel karena mendukung berbagai cara untuk menentukan URL tujuan. Ini memungkinkan integrasi yang lebih baik dengan struktur aplikasi Django.
+- **Contoh Penggunaan**: return redirect('main:show_main')
+- **Keterbacaan Kode**: Lebih intuitif dan mudah dibaca karena menggunakan nama view atau objek model yang lebih bermakna. Ini membuat kode lebih berorientasi pada konsep daripada detail implementasi.
+- **Kemudahan Penentuan URL**: Otomatis menangani penentuan URL ketika menggunakan nama view atau objek model. Ini mengurangi kemungkinan kesalahan dan meningkatkan produktivitas.
+- **Mekanisme Internal**: Membungkus logika pembuatan objek `HttpResponseRedirect` dan menyederhanakan proses bagi pengembang.
+
+### Kesimpulan:
+- **HttpResponseRedirect()** memberikan kontrol penuh atas URL tujuan tetapi kurang fleksibel dan lebih merepotkan dalam penggunaannya.
+- **redirect()** lebih mudah digunakan, lebih fleksibel, dan lebih sesuai dengan prinsip-prinsip pemrograman Django.
+
+
+## Jelaskan cara kerja penghubungan model Product dengan User!
+
+Mendefinisikan Relasi pada models.py dilakukan dengan melakukan from django.contrib.auth.models import User, yang merupakan model bawaan Django untuk manajemen pengguna.
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+ForeignKey: Menunjukkan bahwa untuk semua objek Product terhubung dengan satu objek User. Namun, satu User dapat memiliki banyak Product
+
+on_delete=models.CASCADE: Jika pengguna (User) dihapus, maka semua produk yang dimiliki olehh pengguna tersebut juga akan dihapus dari database. Ini mengamankan integritas data dengan memastikan bahwa produk tidak memiliki referensi pengguna yang sudah tidak ada.
+
+    material_entries = MaterialEntry.objects.filter(user=request.user)
+
+digunakan untuk mendapatkan semua produk yang dimiliki oleh pengguna yang sedang login. Hal tersebut dilakukan dengan menyaring seluruh objek dan hanya mengambil Material Entry yang dimana field user terisi dengan objek User yang sama dengan pengguna yang sedang login
+
+        material_entry.user = request.user
+
+Pada views.py perintah di atas digunakan untuk menetapkan user sebagai pengguna yang sedang login
+
+
+## Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+
+from django.contrib.auth import authenticate, login, logout
+
+
+1. **Authentication pada Django**
+- Django menggunakan middleware otentikasi bawaan (`django.contrib.auth`) yang menyediakan fungsi login, logout, dan sistem manajemen pengguna.
+
+from django.contrib.auth import authenticate, login, logout
+
+
+login(request, user)
+
+
+Django menyediakan fitur otentiikasi bawaan seperti pada perintah di atas. fitur login di atas adalah salah satunya. Fitur di atas memungkinkan pengguna untuk memulai session.
+
+2. **Authorization di Django**
+- Django mengatur izin dengan menggunakan model `Permissions` dan grup yang dapat diberikan kepada pengguna.
+
+@login_required(login_url='/login')
+
+
+potongan kode di atas terdapat di atas fungsi show_main yang berarti halaman show_main hanya akan dapat diakses oleh pengguna yang sudah terautentikasi, dalam hal ini login.
+
+## Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
 
