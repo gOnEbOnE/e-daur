@@ -192,3 +192,60 @@ potongan kode di atas terdapat di atas fungsi show_main yang berarti halaman sho
 
 ## Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
 
+Django mengingat pengguna login menggunakan **cookies** dan **session**. Saat login, Django menyimpan session ID di server dan mengirimkan cookie berisi session ID ke browser pengguna. Saat pengguna mengakses situs kembali, cookie ini membantu Django mengenali pengguna.
+
+## Bagaimana Django Mengingat Pengguna yang Telah Login
+
+Django menggunakan kombinasi dari cookies dan session untuk mengingat pengguna yang telah login:
+
+- **Session-Based Authentication:** Django menyimpan ID pengguna yang telah login dalam session di server. ID session ini kemudian disimpan dalam cookie di browser pengguna.
+- **Cookie:** Setiap kali pengguna membuat request, cookie dengan session ID dikirim ke server. Server menggunakan ID ini untuk mengambil dan memverifikasi state pengguna.
+
+### Kegunaan Lain dari Cookies
+
+Selain untuk autentikasi, cookies memiliki kegunaan lain, termasuk:
+
+- **Personalisasi:** Menyimpan preferensi pengguna seperti tema situs atau bahasa.
+- **Tracking dan Analisis:** Digunakan untuk melacak interaksi pengguna dengan situs untuk analisis.
+- **Manajemen Iklan:** Cookies membantu dalam melacak aktivitas pengguna untuk menargetkan iklan yang lebih relevan.
+
+### Keamanan Cookies
+
+Tidak semua cookies aman karena alasan berikut:
+
+- **Cookies dari Pihak Ketiga:** Cookies ini bisa melacak aktivitas pengguna di berbagai situs dan menimbulkan masalah privasi.
+- **Risiko Keamanan:** Cookies yang menyimpan informasi sensitif tanpa enkripsi dapat dicuri melalui serangan seperti XSS.
+- **Peraturan Privasi:** Peraturan seperti GDPR di Uni Eropa membatasi penggunaan cookies, terutama yang berkaitan dengan konsensus pengguna dan pengelolaan data.
+
+Keamanan dalam penggunaan cookies sangat bergantung pada implementasi dan manajemen yang tepat, termasuk penggunaan atribut HttpOnly dan Secure untuk memastikan keamanan data pengguna.
+
+# Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+## 1. Implementasi Fungsi Registrasi, Login, dan Logout
+
+### Registrasi:
+- Buat form registrasi untuk pengguna baru dengan field seperti `username`, `password`, dan informasi tambahan jika diperlukan.
+- Simpan data pengguna baru ke dalam database dengan mengenkripsi password menggunakan hashing (misalnya, bcrypt).
+- Tambahkan validasi untuk memastikan username unik dan password memenuhi syarat keamanan.
+
+### Login:
+- Buat form login dengan field `username` dan `password`.
+- Verifikasi username dan password yang dimasukkan dengan data di database.
+- Jika login berhasil, simpan session untuk pengguna menggunakan session management, dan arahkan pengguna ke halaman utama.
+
+### Logout:
+- Implementasikan fungsi logout dengan menghapus session pengguna yang sedang aktif.
+- Redirect pengguna ke halaman login atau halaman utama setelah logout.
+
+## 2. Membuat Dua Akun Pengguna dengan Dummy Data
+- Buat dua akun pengguna secara manual di database atau melalui command line tool seperti `Django shell` atau fitur admin.
+- Untuk setiap akun, tambahkan tiga data dummy pada model yang sudah ada di aplikasi.
+- Pastikan data dummy tersebut dapat diakses oleh pengguna yang terkait.
+
+## 3. Menghubungkan Model Product dengan User
+- Tambahkan ForeignKey atau OneToMany relationship antara model `Product` dan model `User` untuk mengaitkan produk dengan pemilik atau pengguna.
+  
+![image](https://github.com/user-attachments/assets/a0574e48-7f2d-481f-8aee-d8060307cba1)
+
+
+
+
