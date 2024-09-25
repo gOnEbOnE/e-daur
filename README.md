@@ -222,30 +222,44 @@ Keamanan dalam penggunaan cookies sangat bergantung pada implementasi dan manaje
 # Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 ## 1. Implementasi Fungsi Registrasi, Login, dan Logout
 
+![image](https://github.com/user-attachments/assets/ed2079e7-ec8b-44a3-99f5-d9e0b3987cf8)
+
 ### Registrasi:
-- Buat form registrasi untuk pengguna baru dengan field seperti `username`, `password`, dan informasi tambahan jika diperlukan.
-- Simpan data pengguna baru ke dalam database dengan mengenkripsi password menggunakan hashing (misalnya, bcrypt).
-- Tambahkan validasi untuk memastikan username unik dan password memenuhi syarat keamanan.
+Membuat template untuk melakukan registrasi dengan membuat registerr.html selanjutnya template tersebut akan dirender oleh fungsi yang ada pada views.py seperti pada gambar di atas.
 
 ### Login:
-- Buat form login dengan field `username` dan `password`.
-- Verifikasi username dan password yang dimasukkan dengan data di database.
-- Jika login berhasil, simpan session untuk pengguna menggunakan session management, dan arahkan pengguna ke halaman utama.
+Membuat halaman login pada direktori template dengan nama login.html yang selanjutnya dirender oleh fungsi yang ada pada views.py
 
 ### Logout:
-- Implementasikan fungsi logout dengan menghapus session pengguna yang sedang aktif.
-- Redirect pengguna ke halaman login atau halaman utama setelah logout.
+Mengembalikan user ke halaman login setelah user menekan tombol logout dengan 
+
+        return redirect('main:login')
+
+Setelah mengimplementasikan ketiga hal di atas kita perlu menambahkan path pada urls.py yang akan menghubungkan dan mengembalikan halaman-halaman baik login maupun register yang kita sudah kita buat
+
 
 ## 2. Membuat Dua Akun Pengguna dengan Dummy Data
-- Buat dua akun pengguna secara manual di database atau melalui command line tool seperti `Django shell` atau fitur admin.
-- Untuk setiap akun, tambahkan tiga data dummy pada model yang sudah ada di aplikasi.
-- Pastikan data dummy tersebut dapat diakses oleh pengguna yang terkait.
+Registrasi pada halaman registrasi pada localhost:8000 lalu nantinya akan diarahkan ke login page untuk login menggunakan akun yang sudah teregistrasi. Selanjutnya pengguna dapat mengisi form untuk membuat product yang akan terhubung dengan akun user tersebut. Dibawah ini adalah dua akun dummy dengan masing-masing product yang mereka punya.
+![image](https://github.com/user-attachments/assets/37341d1f-c109-4a69-b38e-34c99d5c1126)
+
 
 ## 3. Menghubungkan Model Product dengan User
-- Tambahkan ForeignKey atau OneToMany relationship antara model `Product` dan model `User` untuk mengaitkan produk dengan pemilik atau pengguna.
+ Tambahkan ForeignKey atau OneToMany relationship antara model `Product` dan model `User` untuk mengaitkan produk dengan pemilik atau pengguna.
   
 ![image](https://github.com/user-attachments/assets/a0574e48-7f2d-481f-8aee-d8060307cba1)
 
+![image](https://github.com/user-attachments/assets/f56c9ee6-4b81-4954-929c-8fbbccbc9837)
 
+## 4. Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+
+
+    <h5>username: </h5>
+    <p>{{name}}</p>
+
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
+
+    ![image](https://github.com/user-attachments/assets/4a148a12-f554-4a38-848f-aa1e4796fdac)
+
+Cuplikan kode di atas memungkinkan pengguna untuk melihat apakah user yang sedang login adalah dirinya sendiri dan terakhir kali. Data diambil oleh views.py lalu dikirimkan ke main.html yang terdapat pada direktori templates.
 
 
