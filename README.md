@@ -168,7 +168,7 @@ Pada views.py perintah di atas digunakan untuk menetapkan user sebagai pengguna 
 
 ## Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
 
-from django.contrib.auth import authenticate, login, logout
+    from django.contrib.auth import authenticate, login, logout
 
 
 1. **Authentication pada Django**
@@ -177,7 +177,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import authenticate, login, logout
 
 
-login(request, user)
+    login(request, user)
 
 
 Django menyediakan fitur otentiikasi bawaan seperti pada perintah di atas. fitur login di atas adalah salah satunya. Fitur di atas memungkinkan pengguna untuk memulai session.
@@ -185,7 +185,7 @@ Django menyediakan fitur otentiikasi bawaan seperti pada perintah di atas. fitur
 2. **Authorization di Django**
 - Django mengatur izin dengan menggunakan model `Permissions` dan grup yang dapat diberikan kepada pengguna.
 
-@login_required(login_url='/login')
+    @login_required(login_url='/login')
 
 
 potongan kode di atas terdapat di atas fungsi show_main yang berarti halaman show_main hanya akan dapat diakses oleh pengguna yang sudah terautentikasi, dalam hal ini login.
@@ -258,7 +258,7 @@ Registrasi pada halaman registrasi pada localhost:8000 lalu nantinya akan diarah
 
     <h5>Sesi terakhir login: {{ last_login }}</h5>
 
-    ![image](https://github.com/user-attachments/assets/4a148a12-f554-4a38-848f-aa1e4796fdac)
+![image](https://github.com/user-attachments/assets/4a148a12-f554-4a38-848f-aa1e4796fdac)
 
 Cuplikan kode di atas memungkinkan pengguna untuk melihat apakah user yang sedang login adalah dirinya sendiri dan terakhir kali. Data diambil oleh views.py lalu dikirimkan ke main.html yang terdapat pada direktori templates.
 
