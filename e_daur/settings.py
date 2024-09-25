@@ -27,7 +27,10 @@ SECRET_KEY = 'django-insecure-)^37h6hdqi+&1bu8$&3vltua()&cfv+%qtlsile&p(twz9o&ad
 PRODUCTION = os.getenv("PRODUCTION", False)
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "christopher-matthew31-edaur.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "christopher-matthew31-edaur.pbp.cs.ui.ac.id", ]
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://christopher-matthew31-edaur.pbp.cs.ui.ac.id", "https://christopher-matthew31-edaur.pbp.cs.ui.ac.id"]
+
 
 
 
