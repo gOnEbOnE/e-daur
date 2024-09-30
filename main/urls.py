@@ -3,6 +3,8 @@ from main.views import show_main, create_material_entry, show_xml, show_json, sh
 from main.views import register
 from main.views import login_user
 from main.views import logout_user
+from main.views import edit_material
+from main.views import delete_material
 
 app_name = 'main'
 
@@ -16,5 +18,7 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+    path('edit-material/<uuid:id>', edit_material, name='edit_material'),
+    path('delete/<uuid:id>', delete_material, name='delete_material'), # sesuaikan dengan nama fungsi yang dibuat
 
 ]

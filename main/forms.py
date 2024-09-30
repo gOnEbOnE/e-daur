@@ -4,4 +4,4 @@ from main.models import MaterialEntry
 class MaterialEntryForm(ModelForm):
     class Meta:
         model = MaterialEntry
-        fields = ["nama", "harga", "deskripsi"]
+        fields = ["nama", "harga", "deskripsi", "rating",]

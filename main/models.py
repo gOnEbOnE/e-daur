@@ -11,5 +11,6 @@ class MaterialEntry(models.Model):
     harga = models.IntegerField()
     deskripsi = models.TextField()
     image = models.ImageField()
+    rating = models.IntegerField()
 
 # Create your models here.
