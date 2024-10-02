@@ -393,11 +393,34 @@ Lalu pada direktori main/templates ditambahkan sebuah file .html yang merupakan 
 Setelah melakukan langkah-langkah di atas, import edit_maaterial dan delete_material ke urls.py dari main.views. Terakhir adalah menambahkan path url dari delete_material dan edit_material ke urls.py.
 ![image](https://github.com/user-attachments/assets/67702804-4db8-4689-9fe0-5914cba62179)
 
+### Kustomisasi halaman login, register, dan tambah product semenarik mungkin.
+login.html
+1. memberikan warna merah pada tombol login
+2. menambahkan blok kondisional jika login berhasil atau gagal
+3. menambahkan tautan ke halaman registrasi
+
+register.html
+1. menggunakan tetap tema merah dan background abu-abu
+2. form fields untuk password, password verifkasi, dan _username_
+3. layout menggunakan flex untuk mengatur elemen secara responsif
+4. pesan error yang ditampilkan dengan warna merah
+
+create_material_entry.html
+1. menggunakan layout flex
+2. link navigasi yang menggunakan navbar
+3. kesalahan input ditandai dengan warna merah
+4. efek shadow pada kotak form untuk menambah visual
+
 ### Kustomisasi halaman daftar product menjadi lebih menarik dan responsive.
-login.html diedit dengan langkah langkah dibawah ini.
+Dalam pembuatan halaman daftar produk yang lebih menarik saya mengubah main.html dan juga menambahkan card_material.html yang menunjukan sebuah gif(no-materials.gif) pada halaman main ketika belum terdapat produk yang terdaftar. Ketika sudah terdaftar produk halaman main akan menunjukan card-card product yang berisi nama produk, deskripsi dari produk, harga, dan rating produk. Pada penampilan _card_ ini menggunakan layout grid sehingga dapat menyesuaikan dengan layar dari pengguna. Pada tampilan card juga ditambahkan rating dalam bentuk bintang(SVG) sehingga pengguna dapat melihat rating dari sebuah material dalam bentuk yang simpel.
+
+### Untuk setiap card product, buatlah dua buah button untuk mengedit dan menghapus product pada card tersebut
+Menambahkan tag <a> terlebih dahulu untuk membuat _button_ untuk menghapus dan melakukan _edit_ terhadap material yang didaftarkan oleh user hal ini berfungsi untuk memunculkan tombol dan dapat digunakan juga pada akhirnya untuk menambahkan warna pada tombol tombol tersebut dan juga menambahkan icon yang sesuai. Kedua tombol tersebut terhubung dengan fungsi yang terdapat pada main.views yaitu fungsi delete_material dan edit_material.
 
 
+### Buatlah navigation bar (navbar) untuk fitur-fitur pada aplikasi yang responsive terhadap perbedaan ukuran device, khususnya mobile dan desktop.
 
+Pembuatan _navigation bar_(navbar) diawali dengan pembuatan file navbar.html yang pada awalnya menggunakan tag <nav> untuk mendefinisikan suatu _container_ sebagai navbar kita. Selanjutnya kita tambahkan class fixed top-0 left-0 right-0 sehingga navbar dapat menutupi secara penuh bagian atas dari layout yang kita miliki dari sisi kanan dan kiri serta selalu menempel pada bagian atas dari _layout_. navbar ini kita beri warna merah dan juga kita beri shadow. Selanjutnya agar layout dapat menyesuaikan dengan ukuran layar kita tambahkan layout flexbox sehingga perbedaan navbar dapat tersesuaikan. Untuk menampilkan tombol hamburger jika tampilan ukuran layar sudah memadai digunakan perintah md:hidden. Jika layar cukup luas maka akan tampil menu pada navbar namun ketika layar sudah mencapai ukuran ponsel menu seperti profile, home, dan logout akan ada pada tombol hamburger.
 
 
     
