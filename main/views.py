@@ -13,22 +13,16 @@ from django.urls import reverse
 
 # Create your views here.
 def delete_material(request, id):
-    # Get mood berdasarkan id
     material = MaterialEntry.objects.get(pk = id)
-    # Hapus mood
     material.delete()
-    # Kembali ke halaman awal
     return HttpResponseRedirect(reverse('main:show_main'))
 
 def edit_material(request, id):
-    # Get mood entry berdasarkan id
     material = MaterialEntry.objects.get(pk = id)
 
-    # Set mood entry sebagai instance dari form
     form = MaterialEntryForm(request.POST or None, instance=material)
 
     if form.is_valid() and request.method == "POST":
-        # Simpan form dan kembali ke halaman awal
         form.save()
         return HttpResponseRedirect(reverse('main:show_main'))
 
