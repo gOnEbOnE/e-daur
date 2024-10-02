@@ -270,20 +270,19 @@ Cuplikan kode di atas memungkinkan pengguna untuk melihat apakah user yang sedan
 ### Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
 Pada suatu selector CSS terdapat beberapa elemen yang antara lain adalah, Inline Styles, ID Selector, Class Selector, dan Element Selector.
 
-Inline Styles
+**Inline Styles**
 Digunakan untuk memberikan style untuk elemen. Contoh:
 
 <div style="color: blue;">Hello World</div>
 
-ID Selector
+**ID Selector**
 ID Selector menargetkan elemen berdasarkan ID-nya. Contoh:
-
 
 #header {
     color: green;
 }
 
-Class Selector
+**Class Selector**
 Class Selector menargetkan elemen berdasarkan atribut kelasnya, atribut type="text", atau pseudo-klas seperti
 . Contoh:
 
@@ -292,7 +291,7 @@ Class Selector menargetkan elemen berdasarkan atribut kelasnya, atribut type="te
     color: red;
 }
 
-Element Selector.
+**Element Selector.**
 Selektor ini menargetkan elemen berdasarkan nama tag HTML mereka seperti div, h1, dll., serta pseudo-elemen seperti ::before dan ::after. Contoh:
 
 
@@ -307,11 +306,11 @@ Desain responsif adalah konsep penting dalam pengembangan aplikasi web karena me
 
 ### Contoh Aplikasi yang Sudah Menerapkan Desain Responsif:
 
-1. **Twitter:**
-   Sebagai platform media sosial, Twitter memiliki desain yang responsif yang memastikan pengalaman pengguna yang konsisten baik di aplikasi mobile maupun web. Antarmuka pengguna menyesuaikan dengan ukuran layar yang berbeda tanpa mengurangi fungsionalitas.
-
-2. **Amazon:**
+1. **Amazon:**
    Situs e-commerce ini menawarkan pengalaman belanja yang mulus di berbagai perangkat. Desainnya berubah secara dinamis untuk memudahkan navigasi, pencarian, dan transaksi di ponsel, tablet, atau desktop.
+   
+3. **Twitter:**
+   Sebagai platform media sosial, Twitter memiliki desain yang responsif yang memastikan pengalaman pengguna yang konsisten baik di aplikasi mobile maupun web. Antarmuka pengguna menyesuaikan dengan ukuran layar yang berbeda tanpa mengurangi fungsionalitas.
 
 ### Contoh Aplikasi yang Belum Menerapkan Desain Responsif:
 
@@ -323,4 +322,64 @@ Desain responsif adalah konsep penting dalam pengembangan aplikasi web karena me
 
 Pentingnya desain responsif tidak hanya terletak pada estetika dan kepraktisan tetapi juga dalam keterjangkauan dan keefektifan dalam menjaga keterlibatan pengguna di era digital ini.
 
+## Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Dalam desain web, konsep margin, border, dan padding adalah bagian penting dari box model CSS, yang mengontrol tata letak elemen. Berikut penjelasan dari masing-masing konsep tersebut serta contoh implementasinya:
 
+**Margin**
+Margin adalah ruang yang terletak di luar batas elemen. Margin tidak memiliki warna dan adalah area transparan yang digunakan untuk memberi jarak antara elemen dengan elemen lain di sekitarnya.
+
+Contoh Implementasi:
+
+    div {
+     margin: 20px 15px; 
+    }
+
+**Border**
+Border adalah garis yang mengelilingi padding dan konten. Border dapat didefinisikan dalam berbagai ketebalan, gaya, dan warna.
+
+Contoh Implementasi:
+![image](https://github.com/user-attachments/assets/33bab4af-011d-4ca8-8544-01165c10601b)
+2px menunjukan ketebalan border yaitu 2 piksel. Solid menunjukan jenis border yang artinya menggunakan garis padat atau garis yang tidak putus putus.
+
+**Padding**
+Padding adalah ruang antara konten dalam elemen dan border-nya. Padding meningkatkan area baca atau klik suatu elemen, dan berwarna sama dengan latar belakang elemen kecuali jika ditetapkan lain.
+
+Contoh Implementasi:
+![image](https://github.com/user-attachments/assets/a246e294-b373-43a0-8ef3-e79dd6cfa265)
+
+kode di atas mengatur padding yang diterapkan ke seluruh sisi dari elemen(atas, bawah, kanan, kiri). Sehingga ketika elemen tersebut memiliki konten akan terdapat jarak 0.5 rem(8 piksel) dari sisi-sisinya.
+
+## Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+
+### Flexbox (Flexible Box Layout)
+Flexbox merupakan suatu cara untuk mengatur elemen yang memungkinkan penyesuaian penempatan baik jika diberi ruang yang luas maupun jika diberi ruang yang sempit.
+
+**Contoh penggunaan:** salah satu contoh penggunaannya adadlah dalam pembuatan _navigation bar_ yang merupakan flex container dan  elemen yang ada pada navbar tersebut adalah flex itemsnya.
+
+**Contoh implementasi:**
+
+    <div class="flex-container">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+
+### Grid Layout
+Grid Layout merupakan teknik yang lebih terstruktur dalam pembuatan tata letak dua dimensi (kolom dan baris). 
+
+**Contoh penggunaan:** ketika ingin membuat suatu tampilan yang terdirri dari suatu container yang berisi beberapa kotak-kotak elemen di dalamnya. Bahkan pembuatan nama npm dan kelas pada website tutorial pun dibuat dengan menggunakan grid.
+
+**Contoh implementasi:**
+    <div class="grid-container">
+      <div class="grid-item">1</div>
+      <div class="grid-item">2</div>
+      <div class="grid-item">3</div>
+      <div class="grid-item">4</div>
+      <div class="grid-item">5</div>
+      <div class="grid-item">6</div>
+      <div class="grid-item">7</div>
+      <div class="grid-item">8</div>
+      <div class="grid-item">9</div>
+    </div>
+
+    
