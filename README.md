@@ -381,5 +381,23 @@ Grid Layout merupakan teknik yang lebih terstruktur dalam pembuatan tata letak d
       <div class="grid-item">8</div>
       <div class="grid-item">9</div>
     </div>
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+### Implementasikan fungsi untuk menghapus dan mengedit product.
+
+Membuat dua fungsi baru pada views.py yaitu fungsi edit_material dan fungsi delete_material
+![image](https://github.com/user-attachments/assets/d0388e6d-4f84-42cb-891f-6971533ca39b)
+
+Lalu pada direktori main/templates ditambahkan sebuah file .html yang merupakan file di mana user dapat mengubah input material mereka yang sebelumnya. 
+
+Setelah melakukan langkah-langkah di atas, import edit_maaterial dan delete_material ke urls.py dari main.views. Terakhir adalah menambahkan path url dari delete_material dan edit_material ke urls.py.
+![image](https://github.com/user-attachments/assets/67702804-4db8-4689-9fe0-5914cba62179)
+
+### Kustomisasi halaman daftar product menjadi lebih menarik dan responsive.
+login.html diedit dengan langkah langkah dibawah ini.
+
+
+
+
 
     
