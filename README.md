@@ -196,3 +196,7 @@ potongan kode di atas terdapat di atas fungsi show_main yang berarti halaman sho
 
 ## Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
 
+================================================================================================================================================================================================================================================
+## TUGAS 5
+
+
