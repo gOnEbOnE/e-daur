@@ -172,7 +172,7 @@ Pada views.py perintah di atas digunakan untuk menetapkan user sebagai pengguna 
 
 ## Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
 
-from django.contrib.auth import authenticate, login, logout
+    from django.contrib.auth import authenticate, login, logout
 
 
 1. **Authentication pada Django**
@@ -181,7 +181,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import authenticate, login, logout
 
 
-login(request, user)
+    login(request, user)
 
 
 Django menyediakan fitur otentiikasi bawaan seperti pada perintah di atas. fitur login di atas adalah salah satunya. Fitur di atas memungkinkan pengguna untuk memulai session.
@@ -189,11 +189,235 @@ Django menyediakan fitur otentiikasi bawaan seperti pada perintah di atas. fitur
 2. **Authorization di Django**
 - Django mengatur izin dengan menggunakan model `Permissions` dan grup yang dapat diberikan kepada pengguna.
 
-@login_required(login_url='/login')
+    @login_required(login_url='/login')
 
 
 potongan kode di atas terdapat di atas fungsi show_main yang berarti halaman show_main hanya akan dapat diakses oleh pengguna yang sudah terautentikasi, dalam hal ini login.
 
 ## Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
 
+Django mengingat pengguna login menggunakan **cookies** dan **session**. Saat login, Django menyimpan session ID di server dan mengirimkan cookie berisi session ID ke browser pengguna. Saat pengguna mengakses situs kembali, cookie ini membantu Django mengenali pengguna.
 
+## Bagaimana Django Mengingat Pengguna yang Telah Login
+
+Django menggunakan kombinasi dari cookies dan session untuk mengingat pengguna yang telah login:
+
+- **Session-Based Authentication:** Django menyimpan ID pengguna yang telah login dalam session di server. ID session ini kemudian disimpan dalam cookie di browser pengguna.
+- **Cookie:** Setiap kali pengguna membuat request, cookie dengan session ID dikirim ke server. Server menggunakan ID ini untuk mengambil dan memverifikasi state pengguna.
+
+### Kegunaan Lain dari Cookies
+
+Selain untuk autentikasi, cookies memiliki kegunaan lain, termasuk:
+
+- **Personalisasi:** Menyimpan preferensi pengguna seperti tema situs atau bahasa.
+- **Tracking dan Analisis:** Digunakan untuk melacak interaksi pengguna dengan situs untuk analisis.
+- **Manajemen Iklan:** Cookies membantu dalam melacak aktivitas pengguna untuk menargetkan iklan yang lebih relevan.
+
+### Keamanan Cookies
+
+Tidak semua cookies aman karena alasan berikut:
+
+- **Cookies dari Pihak Ketiga:** Cookies ini bisa melacak aktivitas pengguna di berbagai situs dan menimbulkan masalah privasi.
+- **Risiko Keamanan:** Cookies yang menyimpan informasi sensitif tanpa enkripsi dapat dicuri melalui serangan seperti XSS.
+- **Peraturan Privasi:** Peraturan seperti GDPR di Uni Eropa membatasi penggunaan cookies, terutama yang berkaitan dengan konsensus pengguna dan pengelolaan data.
+
+Keamanan dalam penggunaan cookies sangat bergantung pada implementasi dan manajemen yang tepat, termasuk penggunaan atribut HttpOnly dan Secure untuk memastikan keamanan data pengguna.
+
+# Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+## 1. Implementasi Fungsi Registrasi, Login, dan Logout
+
+![image](https://github.com/user-attachments/assets/ed2079e7-ec8b-44a3-99f5-d9e0b3987cf8)
+
+### Registrasi:
+Membuat template untuk melakukan registrasi dengan membuat registerr.html selanjutnya template tersebut akan dirender oleh fungsi yang ada pada views.py seperti pada gambar di atas.
+
+### Login:
+Membuat halaman login pada direktori template dengan nama login.html yang selanjutnya dirender oleh fungsi yang ada pada views.py
+
+### Logout:
+Mengembalikan user ke halaman login setelah user menekan tombol logout dengan 
+
+        return redirect('main:login')
+
+Setelah mengimplementasikan ketiga hal di atas kita perlu menambahkan path pada urls.py yang akan menghubungkan dan mengembalikan halaman-halaman baik login maupun register yang kita sudah kita buat
+
+
+## 2. Membuat Dua Akun Pengguna dengan Dummy Data
+Registrasi pada halaman registrasi pada localhost:8000 lalu nantinya akan diarahkan ke login page untuk login menggunakan akun yang sudah teregistrasi. Selanjutnya pengguna dapat mengisi form untuk membuat product yang akan terhubung dengan akun user tersebut. Dibawah ini adalah dua akun dummy dengan masing-masing product yang mereka punya.
+![image](https://github.com/user-attachments/assets/37341d1f-c109-4a69-b38e-34c99d5c1126)
+
+
+## 3. Menghubungkan Model Product dengan User
+ Tambahkan ForeignKey atau OneToMany relationship antara model `Product` dan model `User` untuk mengaitkan produk dengan pemilik atau pengguna.
+  
+![image](https://github.com/user-attachments/assets/a0574e48-7f2d-481f-8aee-d8060307cba1)
+
+![image](https://github.com/user-attachments/assets/f56c9ee6-4b81-4954-929c-8fbbccbc9837)
+
+## 4. Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+
+
+    <h5>username: </h5>
+    <p>{{name}}</p>
+
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
+
+![image](https://github.com/user-attachments/assets/4a148a12-f554-4a38-848f-aa1e4796fdac)
+
+Cuplikan kode di atas memungkinkan pengguna untuk melihat apakah user yang sedang login adalah dirinya sendiri dan terakhir kali. Data diambil oleh views.py lalu dikirimkan ke main.html yang terdapat pada direktori templates.
+
+
+## TUGAS 5
+=================================================================================================================================================================================================================================================================================================
+
+
+### Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Pada suatu selector CSS terdapat beberapa elemen yang antara lain adalah, Inline Styles, ID Selector, Class Selector, dan Element Selector.
+
+**Inline Styles**
+Digunakan untuk memberikan style untuk elemen. Contoh:
+
+<div style="color: blue;">Hello World</div>
+
+**ID Selector**
+ID Selector menargetkan elemen berdasarkan ID-nya. Contoh:
+
+#header {
+    color: green;
+}
+
+**Class Selector**
+Class Selector menargetkan elemen berdasarkan atribut kelasnya, atribut type="text", atau pseudo-klas seperti
+. Contoh:
+
+
+.button {
+    color: red;
+}
+
+**Element Selector.**
+Selektor ini menargetkan elemen berdasarkan nama tag HTML mereka seperti div, h1, dll., serta pseudo-elemen seperti ::before dan ::after. Contoh:
+
+
+* {
+    color: black;
+}
+Jika dua atau lebih selektor memiliki spesifisitas yang sama, urutan penulisan mereka dalam stylesheet juga berpengaruh. Selektor yang ditulis terakhir akan memiliki prioritas.
+
+### Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+
+Desain responsif adalah konsep penting dalam pengembangan aplikasi web karena memastikan bahwa sebuah situs dapat dilihat dan berfungsi dengan baik di berbagai perangkat dan ukuran layar, dari desktop hingga ponsel. Ini memberikan pengalaman penggunaan yang lebih baik, meningkatkan aksesibilitas, dan seringkali penting untuk SEO, karena mesin pencari seperti Google menilai situs yang responsif lebih baik.
+
+### Contoh Aplikasi yang Sudah Menerapkan Desain Responsif:
+
+1. **Amazon:**
+   Situs e-commerce ini menawarkan pengalaman belanja yang mulus di berbagai perangkat. Desainnya berubah secara dinamis untuk memudahkan navigasi, pencarian, dan transaksi di ponsel, tablet, atau desktop.
+   
+3. **Twitter:**
+   Sebagai platform media sosial, Twitter memiliki desain yang responsif yang memastikan pengalaman pengguna yang konsisten baik di aplikasi mobile maupun web. Antarmuka pengguna menyesuaikan dengan ukuran layar yang berbeda tanpa mengurangi fungsionalitas.
+
+### Contoh Aplikasi yang Belum Menerapkan Desain Responsif:
+
+1. **http://www.arngren.net/**
+
+Pentingnya desain responsif tidak hanya terletak pada estetika dan kepraktisan tetapi juga dalam keterjangkauan dan keefektifan dalam menjaga keterlibatan pengguna di era digital ini.
+
+## Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Dalam desain web, konsep margin, border, dan padding adalah bagian penting dari box model CSS, yang mengontrol tata letak elemen. Berikut penjelasan dari masing-masing konsep tersebut serta contoh implementasinya:
+
+**Margin**
+Margin adalah ruang yang terletak di luar batas elemen. Margin tidak memiliki warna dan adalah area transparan yang digunakan untuk memberi jarak antara elemen dengan elemen lain di sekitarnya.
+
+Contoh Implementasi:
+
+    div {
+     margin: 20px 15px; 
+    }
+
+**Border**
+Border adalah garis yang mengelilingi padding dan konten. Border dapat didefinisikan dalam berbagai ketebalan, gaya, dan warna.
+
+Contoh Implementasi:
+![image](https://github.com/user-attachments/assets/33bab4af-011d-4ca8-8544-01165c10601b)
+2px menunjukan ketebalan border yaitu 2 piksel. Solid menunjukan jenis border yang artinya menggunakan garis padat atau garis yang tidak putus putus.
+
+**Padding**
+Padding adalah ruang antara konten dalam elemen dan border-nya. Padding meningkatkan area baca atau klik suatu elemen, dan berwarna sama dengan latar belakang elemen kecuali jika ditetapkan lain.
+
+Contoh Implementasi:
+![image](https://github.com/user-attachments/assets/a246e294-b373-43a0-8ef3-e79dd6cfa265)
+
+kode di atas mengatur padding yang diterapkan ke seluruh sisi dari elemen(atas, bawah, kanan, kiri). Sehingga ketika elemen tersebut memiliki konten akan terdapat jarak 0.5 rem(8 piksel) dari sisi-sisinya.
+
+## Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+
+### Flexbox (Flexible Box Layout)
+Flexbox merupakan suatu cara untuk mengatur elemen yang memungkinkan penyesuaian penempatan baik jika diberi ruang yang luas maupun jika diberi ruang yang sempit.
+
+**Contoh penggunaan:** salah satu contoh penggunaannya adadlah dalam pembuatan _navigation bar_ yang merupakan flex container dan  elemen yang ada pada navbar tersebut adalah flex itemsnya.
+
+**Contoh implementasi:**
+
+    <div class="flex-container">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+
+### Grid Layout
+Grid Layout merupakan teknik yang lebih terstruktur dalam pembuatan tata letak dua dimensi (kolom dan baris). 
+
+**Contoh penggunaan:** ketika ingin membuat suatu tampilan yang terdirri dari suatu container yang berisi beberapa kotak-kotak elemen di dalamnya. Bahkan pembuatan nama npm dan kelas pada website tutorial pun dibuat dengan menggunakan grid.
+
+**Contoh implementasi:**
+    <div class="grid-container">
+      <div class="grid-item">1</div>
+      <div class="grid-item">2</div>
+      <div class="grid-item">3</div>
+      <div class="grid-item">4</div>
+      <div class="grid-item">5</div>
+      <div class="grid-item">6</div>
+      <div class="grid-item">7</div>
+      <div class="grid-item">8</div>
+      <div class="grid-item">9</div>
+    </div>
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+### Implementasikan fungsi untuk menghapus dan mengedit product.
+
+Membuat dua fungsi baru pada views.py yaitu fungsi edit_material dan fungsi delete_material
+![image](https://github.com/user-attachments/assets/d0388e6d-4f84-42cb-891f-6971533ca39b)
+
+Lalu pada direktori main/templates ditambahkan sebuah file .html yang merupakan file di mana user dapat mengubah input material mereka yang sebelumnya. 
+
+Setelah melakukan langkah-langkah di atas, import edit_maaterial dan delete_material ke urls.py dari main.views. Terakhir adalah menambahkan path url dari delete_material dan edit_material ke urls.py.
+![image](https://github.com/user-attachments/assets/67702804-4db8-4689-9fe0-5914cba62179)
+
+### Kustomisasi halaman login, register, dan tambah product semenarik mungkin.
+login.html
+1. memberikan warna merah pada tombol login
+2. menambahkan blok kondisional jika login berhasil atau gagal
+3. menambahkan tautan ke halaman registrasi
+
+register.html
+1. menggunakan tetap tema merah dan background abu-abu
+2. form fields untuk password, password verifkasi, dan _username_
+3. layout menggunakan flex untuk mengatur elemen secara responsif
+4. pesan error yang ditampilkan dengan warna merah
+
+create_material_entry.html
+1. menggunakan layout flex
+2. link navigasi yang menggunakan navbar
+3. kesalahan input ditandai dengan warna merah
+4. efek shadow pada kotak form untuk menambah visual
+
+### Kustomisasi halaman daftar product menjadi lebih menarik dan responsive.
+Dalam pembuatan halaman daftar produk yang lebih menarik saya mengubah main.html dan juga menambahkan card_material.html yang menunjukan sebuah gif(no-materials.gif) pada halaman main ketika belum terdapat produk yang terdaftar. Ketika sudah terdaftar produk halaman main akan menunjukan card-card product yang berisi nama produk, deskripsi dari produk, harga, dan rating produk. Pada penampilan _card_ ini menggunakan layout grid sehingga dapat menyesuaikan dengan layar dari pengguna. Pada tampilan card juga ditambahkan rating dalam bentuk bintang(SVG) sehingga pengguna dapat melihat rating dari sebuah material dalam bentuk yang simpel.
+
+### Untuk setiap card product, buatlah dua buah button untuk mengedit dan menghapus product pada card tersebut
+Menambahkan tag <a> terlebih dahulu untuk membuat _button_ untuk menghapus dan melakukan _edit_ terhadap material yang didaftarkan oleh user hal ini berfungsi untuk memunculkan tombol dan dapat digunakan juga pada akhirnya untuk menambahkan warna pada tombol tombol tersebut dan juga menambahkan icon yang sesuai. Kedua tombol tersebut terhubung dengan fungsi yang terdapat pada main.views yaitu fungsi delete_material dan edit_material.
+
+
+### Buatlah navigation bar (navbar) untuk fitur-fitur pada aplikasi yang responsive terhadap perbedaan ukuran device, khususnya mobile dan desktop.
+
+Pembuatan _navigation bar_(navbar) diawali dengan pembuatan file navbar.html yang pada awalnya menggunakan tag <nav> untuk mendefinisikan suatu _container_ sebagai navbar kita. Selanjutnya kita tambahkan class fixed top-0 left-0 right-0 sehingga navbar dapat menutupi secara penuh bagian atas dari layout yang kita miliki dari sisi kanan dan kiri serta selalu menempel pada bagian atas dari _layout_. navbar ini kita beri warna merah dan juga kita beri shadow. Selanjutnya agar layout dapat menyesuaikan dengan ukuran layar kita tambahkan layout flexbox sehingga perbedaan navbar dapat tersesuaikan. Untuk menampilkan tombol hamburger jika tampilan ukuran layar sudah memadai digunakan perintah md:hidden. Jika layar cukup luas maka akan tampil menu pada navbar namun ketika layar sudah mencapai ukuran ponsel menu seperti profile, home, dan logout akan ada pada tombol hamburger.
