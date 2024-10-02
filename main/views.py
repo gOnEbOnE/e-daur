@@ -87,13 +87,13 @@ def show_main(request):
     material_entries = MaterialEntry.objects.filter(user=request.user)
     context = {
         'name': request.user.username,
+        'class' : 'C',
         'web' : 'E-Daur',
         'fullname' : 'Christopher Matthew Hendarson',
         'npm' : '2306245592',
         'item_name' : 'kotak pensil',
         'price': 'Rp 0',
         'description': 'kotak pensil',
-        'rating': '1',
         'material_entries' : material_entries,
         'image': 'https://i.imgur.com/fHwFRmz.jpeg',
         'last_login': request.COOKIES['last_login'],
