@@ -263,3 +263,64 @@ Registrasi pada halaman registrasi pada localhost:8000 lalu nantinya akan diarah
 Cuplikan kode di atas memungkinkan pengguna untuk melihat apakah user yang sedang login adalah dirinya sendiri dan terakhir kali. Data diambil oleh views.py lalu dikirimkan ke main.html yang terdapat pada direktori templates.
 
 
+## TUGAS 5
+=================================================================================================================================================================================================================================================================================================
+
+
+### Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Pada suatu selector CSS terdapat beberapa elemen yang antara lain adalah, Inline Styles, ID Selector, Class Selector, dan Element Selector.
+
+Inline Styles
+Digunakan untuk memberikan style untuk elemen. Contoh:
+
+<div style="color: blue;">Hello World</div>
+
+ID Selector
+ID Selector menargetkan elemen berdasarkan ID-nya. Contoh:
+
+
+#header {
+    color: green;
+}
+
+Class Selector
+Class Selector menargetkan elemen berdasarkan atribut kelasnya, atribut type="text", atau pseudo-klas seperti
+. Contoh:
+
+
+.button {
+    color: red;
+}
+
+Element Selector.
+Selektor ini menargetkan elemen berdasarkan nama tag HTML mereka seperti div, h1, dll., serta pseudo-elemen seperti ::before dan ::after. Contoh:
+
+
+* {
+    color: black;
+}
+Jika dua atau lebih selektor memiliki spesifisitas yang sama, urutan penulisan mereka dalam stylesheet juga berpengaruh. Selektor yang ditulis terakhir akan memiliki prioritas.
+
+### Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+
+Desain responsif adalah konsep penting dalam pengembangan aplikasi web karena memastikan bahwa sebuah situs dapat dilihat dan berfungsi dengan baik di berbagai perangkat dan ukuran layar, dari desktop hingga ponsel. Ini memberikan pengalaman penggunaan yang lebih baik, meningkatkan aksesibilitas, dan seringkali penting untuk SEO, karena mesin pencari seperti Google menilai situs yang responsif lebih baik.
+
+### Contoh Aplikasi yang Sudah Menerapkan Desain Responsif:
+
+1. **Twitter:**
+   Sebagai platform media sosial, Twitter memiliki desain yang responsif yang memastikan pengalaman pengguna yang konsisten baik di aplikasi mobile maupun web. Antarmuka pengguna menyesuaikan dengan ukuran layar yang berbeda tanpa mengurangi fungsionalitas.
+
+2. **Amazon:**
+   Situs e-commerce ini menawarkan pengalaman belanja yang mulus di berbagai perangkat. Desainnya berubah secara dinamis untuk memudahkan navigasi, pencarian, dan transaksi di ponsel, tablet, atau desktop.
+
+### Contoh Aplikasi yang Belum Menerapkan Desain Responsif:
+
+1. **Situs Web Pemerintah Tertentu:**
+   Beberapa situs web resmi pemerintah masih kurang responsif. Ini sering terlihat dari tampilan yang tidak konsisten atau susah dinavigasi pada ponsel, dimana elemen-elemen seperti menu dropdown dan formulir tidak tampil dengan baik.
+
+2. **Website Lokal Kecil:**
+   Banyak bisnis kecil atau lokal yang memiliki situs web yang dibuat bertahun-tahun yang lalu dan belum diperbarui untuk menjadi responsif. Hal ini menyebabkan tampilan yang pecah atau susah diakses ketika dibuka melalui smartphone.
+
+Pentingnya desain responsif tidak hanya terletak pada estetika dan kepraktisan tetapi juga dalam keterjangkauan dan keefektifan dalam menjaga keterlibatan pengguna di era digital ini.
+
+
