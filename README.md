@@ -314,11 +314,7 @@ Desain responsif adalah konsep penting dalam pengembangan aplikasi web karena me
 
 ### Contoh Aplikasi yang Belum Menerapkan Desain Responsif:
 
-1. **Situs Web Pemerintah Tertentu:**
-   Beberapa situs web resmi pemerintah masih kurang responsif. Ini sering terlihat dari tampilan yang tidak konsisten atau susah dinavigasi pada ponsel, dimana elemen-elemen seperti menu dropdown dan formulir tidak tampil dengan baik.
-
-2. **Website Lokal Kecil:**
-   Banyak bisnis kecil atau lokal yang memiliki situs web yang dibuat bertahun-tahun yang lalu dan belum diperbarui untuk menjadi responsif. Hal ini menyebabkan tampilan yang pecah atau susah diakses ketika dibuka melalui smartphone.
+1. **http://www.arngren.net/**
 
 Pentingnya desain responsif tidak hanya terletak pada estetika dan kepraktisan tetapi juga dalam keterjangkauan dan keefektifan dalam menjaga keterlibatan pengguna di era digital ini.
 
