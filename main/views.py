@@ -75,8 +75,10 @@ def login_user(request):
             response = HttpResponseRedirect(reverse("main:show_main"))
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
+      else:
+            messages.error(request, "Invalid username or password. Please try again.")
    else:
-        messages.error(request, "Invalid username or password. Please try again.")
+        form = AuthenticationForm(request)
    context = {'form': form}
    return render(request, 'login.html', context)
 
