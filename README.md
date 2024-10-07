@@ -421,3 +421,71 @@ Menambahkan tag <a> terlebih dahulu untuk membuat _button_ untuk menghapus dan m
 ### Buatlah navigation bar (navbar) untuk fitur-fitur pada aplikasi yang responsive terhadap perbedaan ukuran device, khususnya mobile dan desktop.
 
 Pembuatan _navigation bar_(navbar) diawali dengan pembuatan file navbar.html yang pada awalnya menggunakan tag <nav> untuk mendefinisikan suatu _container_ sebagai navbar kita. Selanjutnya kita tambahkan class fixed top-0 left-0 right-0 sehingga navbar dapat menutupi secara penuh bagian atas dari layout yang kita miliki dari sisi kanan dan kiri serta selalu menempel pada bagian atas dari _layout_. navbar ini kita beri warna merah dan juga kita beri shadow. Selanjutnya agar layout dapat menyesuaikan dengan ukuran layar kita tambahkan layout flexbox sehingga perbedaan navbar dapat tersesuaikan. Untuk menampilkan tombol hamburger jika tampilan ukuran layar sudah memadai digunakan perintah md:hidden. Jika layar cukup luas maka akan tampil menu pada navbar namun ketika layar sudah mencapai ukuran ponsel menu seperti profile, home, dan logout akan ada pada tombol hamburger.
+
+
+=============================================================================================================================================================================================================================
+
+## TUGAS 6
+
+###  Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+
+Berikut adalah beberapa manfaat penggunaan JavaScript dalam pengembangan aplikasi web:
+
+1. Interaktivitas: JavaScript memungkinkan pembuatan elemen interaktif seperti formulir dinamis, animasi, dan pembaruan konten tanpa perlu memuat ulang halaman.
+
+2. Manipulasi DOM: JavaScript dapat memanipulasi struktur, gaya, dan konten halaman web secara dinamis.
+
+3. Validasi sisi klien: Memungkinkan validasi input pengguna di sisi klien sebelum dikirim ke server, meningkatkan kinerja dan pengalaman pengguna.
+
+4. Asynchronous programming: Mendukung operasi asinkron seperti AJAX, memungkinkan pembaruan sebagian halaman tanpa reload penuh.
+
+5. Single Page Applications (SPA): Memfasilitasi pembuatan aplikasi web yang berjalan di satu halaman, meningkatkan kecepatan dan responsivitas.
+
+6. Cross-platform development: Dengan framework seperti React Native, JavaScript dapat digunakan untuk pengembangan aplikasi mobile lintas platform.
+
+7. Server-side scripting: Dengan Node.js, JavaScript dapat digunakan untuk pengembangan backend, memungkinkan penggunaan satu bahasa untuk full-stack development.
+
+8. Rich user interfaces: Memungkinkan pembuatan antarmuka pengguna yang kaya dan responsif.
+
+9. Ekosistem yang luas: JavaScript memiliki banyak library dan framework yang mempercepat dan mempermudah pengembangan.
+
+10. Performa: JavaScript dijalankan di sisi klien, mengurangi beban server dan meningkatkan kecepatan aplikasi secara keseluruhan.
+
+
+### Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+
+Penggunaan `await` dalam konteks `fetch()` memungkinkan kita untuk menunggu respons dari permintaan HTTP tanpa perlu menulis callback atau menggunakan `.then()`. Ini membuat kode lebih mudah dibaca dan diatur.
+
+Jika kita tidak menggunakan `await`, kita akan mendapatkan Promise yang harus kita selesaikan dengan `.then()` atau `catch()`. Ini membutuhkan lebih banyak kode dan kurang efisien.
+
+### Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+
+Decorator `@csrf_exempt` digunakan untuk mengabaikan keamanan CSRF (Cross-Site Request Forgery) pada view yang terkait. CSRF adalah serangan di mana seseorang mengirimkan permintaan dari situs web yang diandalkan ke situs web lain tanpa diketahui pengguna.
+
+Dengan menggunakan `@csrf_exempt`, kita memberi tahu Django untuk tidak memeriksa token CSRF pada permintaan yang dikirim melalui AJAX POST. Ini memungkinkan permintaan AJAX untuk melewati keamanan CSRF yang biasanya dilakukan oleh Django untuk melindungi dari serangan CSRF.
+
+Namun, perlu diingat bahwa mengabaikan keamanan CSRF dapat membuka j扇门 untuk serangan CSRF. Oleh karena itu, penggunaan `@csrf_exempt` harus dilakukan dengan hati-hati dan hanya pada situasi di mana keamanan tidak menjadi masalah.
+
+### Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+
+Hal ini dilakukan di backend karena keamanan dan validasi data yang lebih kompleks dan aman tidak dapat dilakukan hanya dengan JavaScript di frontend. Backend memerlukan informasi lebih lengkap tentang konteks permintaan dan validasi yang lebih kompleks.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!
+
+#### 1. AJAX GET
+
+##### Ubahlah kode cards data mood agar dapat mendukung AJAX GET.
+
+##### Lakukan pengambilan data mood menggunakan AJAX GET. Pastikan bahwa data yang diambil hanyalah data milik pengguna yang logged-in.
+
+#### 2. AJAX POST
+
+##### Buatlah sebuah tombol untuk menambahkan mood baru.
+
+##### Buatlah fungsi view baru untuk menambahkan mood baru ke dalam basis data.
+
+##### Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+
+##### Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+
+##### Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar mood terbaru tanpa reload halaman utama secara keseluruhan.
