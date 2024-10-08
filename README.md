@@ -427,70 +427,103 @@ Pembuatan _navigation bar_(navbar) diawali dengan pembuatan file navbar.html yan
 
 # Tugas 6
 
-###  Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+###  Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
 
-Asynchronous programming dan synchronous programming memiliki perbedaan utama dalam cara mereka menangani tugas-tugas:
+Manfaat penggunaan JavaScript dalam pengembangan aplikasi web:
 
-1. Synchronous programming:
-   - Menjalankan tugas secara berurutan, satu per satu.
-   - Setiap tugas harus menunggu tugas sebelumnya selesai sebelum dapat dijalankan.
-   - Dapat menyebabkan blocking, di mana program menunggu tugas yang memakan waktu lama selesai.
-   - Lebih mudah dipahami dan di-debug karena alur eksekusi yang linear.
+1. Manipulasi halaman web secara dinamis: JavaScript memungkinkan perubahan konten dan tampilan halaman tanpa perlu me-refresh seluruh halaman.
 
-2. Asynchronous programming:
-   - Memungkinkan beberapa tugas berjalan secara bersamaan tanpa harus menunggu satu sama lain.
-   - Menggunakan callback, promise, atau async/await untuk menangani tugas-tugas yang memerlukan waktu.
-   - Meningkatkan efisiensi dengan memungkinkan program untuk melanjutkan eksekusi sambil menunggu operasi I/O atau tugas lain yang memakan waktu.
-   - Lebih kompleks untuk diimplementasikan dan di-debug, tetapi sangat berguna untuk aplikasi yang membutuhkan responsivitas tinggi.
+2. Meningkatkan interaktivitas: Memungkinkan pembuatan fitur interaktif seperti animasi, validasi form, dan respons terhadap aksi pengguna.
 
-### Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+3. Pengembangan aplikasi lintas platform: Sebagai bahasa yang berjalan di sisi klien, JavaScript dapat digunakan untuk membuat aplikasi web yang berfungsi di berbagai perangkat dan sistem operasi.
 
-Paradigma event-driven programming adalah pendekatan di mana alur program ditentukan oleh peristiwa seperti input pengguna, sensor output, atau pesan dari program lain. Dalam konteks JavaScript dan AJAX:
+4. Peningkatan performa aplikasi: Dengan menjalankan kode di sisi klien, JavaScript dapat mengurangi beban server dan mempercepat respons aplikasi.
 
-- Program menunggu dan merespons peristiwa yang terjadi, bukan menjalankan kode secara linear.
-- Event listeners digunakan untuk mendeteksi peristiwa tertentu dan menjalankan fungsi yang sesuai.
-- Memungkinkan interaktivitas yang lebih baik dalam aplikasi web.
+5. Dukungan untuk berbagai paradigma pemrograman: JavaScript mendukung pemrograman berorientasi objek, imperatif, dan fungsional, memberikan fleksibilitas dalam pengembangan.
 
-Contoh penerapan dalam tugas ini:
+6. Ekosistem yang kaya: Tersedia banyak library dan framework JavaScript yang mempercepat dan mempermudah pengembangan aplikasi web.
 
-Pada tugas ini, paradigma event-driven programming diterapkan dengan menggunakan event listeners untuk menangani peristiwa seperti klik tombol "Add Product" dan "Add Mood". Ketika peristiwa tersebut terjadi, fungsi yang sesuai akan dijalankan untuk menambahkan produk atau mood baru ke dalam daftar. Contoh spesifik mungkin termasuk:
+7. Kemampuan untuk membuat aplikasi full-stack: Dengan adanya teknologi seperti Node.js, JavaScript dapat digunakan baik di sisi klien maupun server.
 
-- Event listener pada tombol "Add Product" yang memicu fungsi untuk menambahkan produk baru.
-- Event listener pada form submission yang menangani pengiriman data produk baru ke server menggunakan AJAX.
 
-### Jelaskan penerapan asynchronous programming pada AJAX.
 
-Penerapan asynchronous programming pada AJAX memungkinkan program untuk melakukan permintaan data ke server tanpa perlu menunggu respons sebelum melanjutkan eksekusi kode lain. Ini dilakukan dengan menggunakan objek XMLHttpRequest atau fungsi fetch() yang mendukung Promise. Beberapa aspek penting:
+### Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
 
-- AJAX requests berjalan secara asynchronous, tidak memblokir eksekusi kode lain.
-- Callback functions atau Promises digunakan untuk menangani respons dari server.
-- Memungkinkan update parsial halaman web tanpa perlu reload seluruh halaman.
+Fungsi dari penggunaan await ketika menggunakan fetch() adalah:
 
-Dalam tugas ini, asynchronous programming diterapkan dengan menggunakan fungsi fetch() untuk mengambil data produk dari server. Ketika permintaan data selesai, data tersebut kemudian ditampilkan di halaman web tanpa perlu memuat ulang seluruh halaman. Ini meningkatkan responsivitas dan pengalaman pengguna aplikasi web.
+1. Menunggu respons: Await memungkinkan kode untuk menunggu hingga promise yang dikembalikan oleh fetch() selesai sebelum melanjutkan eksekusi.
+
+2. Sinkronisasi kode: Membuat kode asynchronous terlihat seperti synchronous, membuatnya lebih mudah dibaca dan dipahami.
+
+3. Penanganan error: Memungkinkan penggunaan try-catch untuk menangani error dalam operasi asynchronous.
+
+4. Ekstraksi data: Memudahkan ekstraksi data dari respons fetch tanpa perlu menggunakan metode .then() berulang kali.
+
+Jika kita tidak menggunakan await:
+
+1. Kode akan berjalan secara asynchronous tanpa menunggu respons dari fetch().
+
+2. Variabel yang menyimpan hasil fetch() akan berisi promise yang belum terpenuhi, bukan data aktual.
+
+3. Kita perlu menggunakan metode .then() untuk menangani respons, yang dapat menyebabkan "callback hell" jika ada banyak operasi asynchronous berurutan.
+
+4. Penanganan error menjadi lebih rumit karena kita harus menggunakan metode .catch() terpisah.
+
+5. Kode menjadi lebih sulit dibaca dan di-debug, terutama untuk operasi asynchronous yang kompleks.
+
+
+### Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+
+Kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST karena:
+
+1. CSRF (Cross-Site Request Forgery) protection secara default diaktifkan di Django untuk melindungi aplikasi dari serangan CSRF.
+
+2. Ketika melakukan POST request menggunakan AJAX, Django akan mencari token CSRF yang biasanya disertakan dalam form HTML.
+
+3. Namun, dalam kasus AJAX POST, kita sering tidak menggunakan form HTML tradisional, sehingga token CSRF tidak tersedia.
+
+4. Menggunakan csrf_exempt memungkinkan view untuk menerima POST request tanpa memerlukan token CSRF.
+
+5. Ini berguna untuk endpoint API yang mungkin diakses dari domain lain atau aplikasi mobile yang tidak dapat dengan mudah menyertakan token CSRF.
+
+Perlu diingat bahwa penggunaan csrf_exempt harus dilakukan dengan hati-hati karena menghilangkan lapisan keamanan. Jika memungkinkan, lebih baik menggunakan metode lain untuk menyertakan token CSRF dalam request AJAX.
+
+### Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+
+Pembersihan data input pengguna dilakukan di backend (server-side) selain di frontend (client-side) karena beberapa alasan penting:
+
+1. Keamanan: Validasi di frontend dapat dengan mudah dilewati oleh pengguna yang memahami teknik manipulasi browser. Validasi di backend memberikan lapisan keamanan tambahan yang tidak dapat dimanipulasi oleh pengguna.
+
+2. Konsistensi: Backend dapat memastikan bahwa semua data yang masuk ke database telah dibersihkan dan divalidasi, terlepas dari sumber inputnya (misalnya, dari web, aplikasi mobile, atau API).
+
+3. Kompleksitas validasi: Beberapa validasi mungkin memerlukan akses ke database atau logika bisnis yang kompleks, yang lebih mudah dilakukan di backend.
+
+4. Integritas data: Backend dapat melakukan pemeriksaan tambahan seperti uniqueness constraint yang mungkin sulit dilakukan di frontend.
+
+5. Performa: Beberapa pembersihan data mungkin memerlukan proses yang berat, yang lebih baik dilakukan di server untuk mengurangi beban pada perangkat klien.
+
+6. Kompatibilitas: Tidak semua klien mungkin mendukung JavaScript atau memiliki kemampuan untuk melakukan validasi yang kompleks.
+
+7. Keandalan: Jika ada bug dalam kode JavaScript di frontend, validasi backend masih dapat melindungi integritas data.
+
+Meskipun validasi di frontend tetap penting untuk UX yang lebih baik dan mengurangi beban server, validasi di backend tetap diperlukan sebagai pertahanan terakhir untuk keamanan dan integritas data.
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
 #### 1. AJAX GET
 
-##### Ubahlah kode cards data mood agar dapat mendukung AJAX GET.
+##### Ubahlah kode cards data material agar dapat mendukung AJAX GET.
 
-Untuk mengubah kode cards data mood agar mendukung AJAX GET, saya melakukan langkah-langkah berikut:
+Untuk mengubah kode cards data material agar mendukung AJAX GET, saya melakukan langkah-langkah berikut:
 
-1. Saya menghapus kode Jinja yang sebelumnya digunakan untuk menampilkan cards mood.
-
+1. Saya menghapus kode Jinja yang sebelumnya digunakan untuk menampilkan cards material.
 2. Saya membuat fungsi JavaScript baru bernama `refreshMoods()` yang akan melakukan permintaan AJAX GET ke endpoint yang menyediakan data mood.
-
-3. Di dalam fungsi `refreshMoods()`, saya menggunakan `fetch()` untuk mengambil data mood dari server.
-
+3. Di dalam fungsi `refreshMaterialEntries()`, saya menggunakan `fetch()` untuk mengambil data mood dari server.
 4. Setelah menerima respons, saya mengonversi data JSON menjadi objek JavaScript.
-
-5. Saya membuat fungsi untuk membuat elemen HTML card mood berdasarkan data yang diterima.
-
-6. Saya menambahkan card mood yang baru dibuat ke dalam container di halaman HTML.
-
-7. Saya memanggil fungsi `refreshMoods()` saat halaman dimuat dan setelah menambahkan mood baru.
-
-8. Saya memastikan bahwa fungsi ini menangani kasus di mana tidak ada mood yang tersedia.
+5. Saya membuat fungsi untuk membuat elemen HTML card material berdasarkan data yang diterima.
+6. Saya menambahkan card material yang baru dibuat ke dalam container di halaman HTML.
+7. Saya memanggil fungsi `refreshMaterialEntries()` saat halaman dimuat dan setelah menambahkan material baru.
+8. Saya memastikan bahwa fungsi ini menangani kasus di mana tidak ada material yang tersedia.
 
 Dengan cara ini, cards data mood sekarang dapat diperbarui secara dinamis menggunakan AJAX GET tanpa perlu memuat ulang seluruh halaman.
 
@@ -508,15 +541,15 @@ Untuk melakukan pengambilan data material menggunakan AJAX GET dan memastikan ba
 
 #### 2. AJAX POST
 
-##### Buatlah sebuah tombol untuk menambahkan mood baru.
+##### Buatlah sebuah tombol untuk menambahkan produk baru.
 
-Untuk membuat tombol menambahkan mood baru:
+Untuk membuat tombol menambahkan produk baru:
 
 1. Saya menambahkan elemen button di HTML dengan id yang sesuai.
 2. Saya menambahkan event listener pada tombol tersebut menggunakan JavaScript.
 3. Ketika tombol diklik, saya menampilkan modal atau form untuk input mood baru.
 
-##### Buatlah fungsi view baru untuk menambahkan mood baru ke dalam basis data.
+##### Buatlah fungsi view baru untuk menambahkan produk baru ke dalam basis data.
 
 Untuk membuat fungsi view baru:
 
@@ -543,7 +576,7 @@ Untuk menghubungkan form ke path baru:
 
 Untuk melakukan refresh asinkronus:
 
-1. Setelah berhasil menambahkan mood baru, saya memanggil fungsi `refreshMoods()` yang telah dibuat sebelumnya.
-2. Fungsi ini mengambil data mood terbaru dari server dan memperbarui tampilan tanpa me-reload seluruh halaman.
+1. Setelah berhasil menambahkan produk baru, saya memanggil fungsi `refreshMaterialEntries()` yang telah dibuat sebelumnya.
+2. Fungsi ini mengambil data produk terbaru dari server dan memperbarui tampilan tanpa me-reload seluruh halaman.
 
 Dengan mengimplementasikan langkah-langkah di atas, aplikasi sekarang dapat menambahkan mood baru dan memperbarui daftar mood secara asinkronus, meningkatkan responsivitas dan pengalaman pengguna.
