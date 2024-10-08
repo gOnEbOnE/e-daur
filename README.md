@@ -49,7 +49,7 @@ Git digunakan untuk mengelola dan melacak perubahan dalam proyek pengembangan pe
 <br>
 4.Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
 
-Menurut saya framework Django dijadikan sebagai permulaan pembelajaran pengembangan perangkat lunak salah satunya adalah karena dokumentasinya yang lengkap. Pada pembelajaran di kelas Bu Arawinda selalu meng-encourage mahasiswa untuk memerhatikan dan juga mempelajari dokumentasi Django. Karena Django juga ditulis dengan Python yang merupakan sintaks yang mudah dipelajari pada akhirnya mengakibbatkan Django lebih memungkinkan digunakan sebagai portal ataupun pintu masuk ke pembelajaran pengembangan web. Hal lainnya adalah juga karena Django merupakan full-stack, yang berarti Django sudah menyiapkan segala peralatan yang diperlukan pengembangan web baik dari sisi server maupun dari sisi klien. Ini memberi pemula seperti kami mahasiswa pengalaman pengembangan perangkat lunak yang lengkap, mulai dari mengelola database, menulis API, hingga merancang interface user.
+Menurut saya framework Django dijadikan sebagai permulaan pembelajaran pengembangan perangkat lunak salah satunya adalah karena dokumentasinya yang lengkap. Pada pembelajaran di kelas Bu Arawinda selalu meng-encourage mahasiswa untuk memerhatikan dan juga mempelajari dokumentasi Django. Karena Django juga ditulis dengan Python yang merupakan sintaks yang mudah dipelajari pada akhirnya mengakibbatkan Django lebih memungkinkan digunakan sebagai portal ataupun pintu masuk ke pengembangan pengembangan web. Hal lainnya adalah juga karena Django merupakan full-stack, yang berarti Django sudah menyiapkan segala peralatan yang diperlukan pengembangan web baik dari sisi server maupun dari sisi klien. Ini memberi pemula seperti kami mahasiswa pengalaman pengembangan perangkat lunak yang lengkap, mulai dari mengelola database, menulis API, hingga merancang interface user.
 
 <br>
 5. Mengapa model pada Django disebut sebagai ORM?
@@ -64,9 +64,9 @@ Data delivery diperlukan dalam pengimplementasian sebuah platform karena dalam p
 
 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
 
-Menurut saya di antara XML atau JSON lebih baik antara satu dengan yang lainnya bergantung kepada kondisi. Ketika data memiliki struktur yang kompleks sehingga membutuhkan validasi data dengan level intensitas lebih tinggi seperti pada pertukaran data pada perbankan XML akan lebih unggul dikarenakan XML mendukung skema (XSD) yang mempermudah validasi struktur data. Namun XML perlu untuk diparse menggunakan XML parser sehingga tingkat fleksibilitasnya kurang baik dibandingkan JSON yang dapat diparse menggunakan fungsi JavaScript standar.
+Menurut saya di antara XML atau JSON lebih baik antara satu dengan yang lainnya bergantung kepada kondisi. Ketika data memiliki struktur yang kompleks sehingga membutuhkan validasi data dengan level intensitas lebih tinggi seperti pada pertukaran data pada perbankan XML akan lebih unggul dikarenakan XML mendukung skema (XSD) yang mempermudah validasi struktur data. Namun XML perlu untuk diparse menggunakan XML parser sehingga tingkat fleksibilitasnya kurang baik dibanding JSON yang dapat diparse menggunakan fungsi JavaScript standar.
 
-Namun ketika menghadapi data yang menggunakan struktur data yang tidak kompleks JSON akan lebih baik. Penyebabnya adalah JSON lebih efisien karena ukurannya yang lebih kecil dibanding XML sehingga menjadi lebih cepat ketika akan digunakan, penyebab lainnya adalah karena dalam komunikasi client-server JSON lebih ringan, sehingga memungkinkan pertukaran data yang lebih cepat baik pada peramban internet maupun pada perangkat mobile. Hal inilah yang menyebabkan JSON lebih popular dibandingkan XML.
+Namun ketika menghadapi data yang menggunakan struktur data yang tidak kompleks JSON akan lebih baik. Penyebabnya adalah karena JSON lebih efisien karena ukurannya yang lebih kecil dibanding XML sehingga menjadi lebih cepat ketika akan digunakan, penyebab lainnya adalah karena dalam komunikasi client-server JSON lebih ringan, sehingga memungkinkan pertukaran data yang lebih cepat baik pada peramban internet maupun pada perangkat mobile. Hal inilah yang menyebabkan JSON lebih popular dibandingkan XML.
 
 3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
 
@@ -267,7 +267,7 @@ Registrasi pada halaman registrasi pada localhost:8000 lalu nantinya akan diarah
 Cuplikan kode di atas memungkinkan pengguna untuk melihat apakah user yang sedang login adalah dirinya sendiri dan terakhir kali. Data diambil oleh views.py lalu dikirimkan ke main.html yang terdapat pada direktori templates.
 
 
-## TUGAS 5
+# TUGAS 5
 =================================================================================================================================================================================================================================================================================================
 
 
@@ -306,7 +306,7 @@ Jika dua atau lebih selektor memiliki spesifisitas yang sama, urutan penulisan m
 
 ### Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
 
-Desain responsif adalah konsep penting dalam pengembangan aplikasi web karena memastikan bahwa sebuah situs dapat dilihat dan berfungsi dengan baik di berbagai perangkat dan ukuran layar, dari desktop hingga ponsel. Ini memberikan pengalaman penggunaan yang lebih baik, meningkatkan aksesibilitas, dan seringkali penting untuk SEO, karena mesin pencari seperti Google menilai situs yang responsif lebih baik.
+Desain responsif adalah konsep penting dalam pengembangan aplikasi web karena memastikan bahwa sebuah situs dapat dilihat dan berfungsi dengan baik di berbagai perangkat dan ukuran layar, dari desktop hingga ponsel. Ini memberikan pengalaman pengguna yang lebih baik, meningkatkan aksesibilitas, dan seringkali penting untuk SEO, karena mesin pencari seperti Google menilai situs yang responsif lebih baik.
 
 ### Contoh Aplikasi yang Sudah Menerapkan Desain Responsif:
 
@@ -425,67 +425,125 @@ Pembuatan _navigation bar_(navbar) diawali dengan pembuatan file navbar.html yan
 
 =============================================================================================================================================================================================================================
 
-## TUGAS 6
+# Tugas 6
 
-###  Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+###  Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
 
-Berikut adalah beberapa manfaat penggunaan JavaScript dalam pengembangan aplikasi web:
+Asynchronous programming dan synchronous programming memiliki perbedaan utama dalam cara mereka menangani tugas-tugas:
 
-1. Interaktivitas: JavaScript memungkinkan pembuatan elemen interaktif seperti formulir dinamis, animasi, dan pembaruan konten tanpa perlu memuat ulang halaman.
+1. Synchronous programming:
+   - Menjalankan tugas secara berurutan, satu per satu.
+   - Setiap tugas harus menunggu tugas sebelumnya selesai sebelum dapat dijalankan.
+   - Dapat menyebabkan blocking, di mana program menunggu tugas yang memakan waktu lama selesai.
+   - Lebih mudah dipahami dan di-debug karena alur eksekusi yang linear.
 
-2. Manipulasi DOM: JavaScript dapat memanipulasi struktur, gaya, dan konten halaman web secara dinamis.
+2. Asynchronous programming:
+   - Memungkinkan beberapa tugas berjalan secara bersamaan tanpa harus menunggu satu sama lain.
+   - Menggunakan callback, promise, atau async/await untuk menangani tugas-tugas yang memerlukan waktu.
+   - Meningkatkan efisiensi dengan memungkinkan program untuk melanjutkan eksekusi sambil menunggu operasi I/O atau tugas lain yang memakan waktu.
+   - Lebih kompleks untuk diimplementasikan dan di-debug, tetapi sangat berguna untuk aplikasi yang membutuhkan responsivitas tinggi.
 
-3. Validasi sisi klien: Memungkinkan validasi input pengguna di sisi klien sebelum dikirim ke server, meningkatkan kinerja dan pengalaman pengguna.
+### Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
 
-4. Asynchronous programming: Mendukung operasi asinkron seperti AJAX, memungkinkan pembaruan sebagian halaman tanpa reload penuh.
+Paradigma event-driven programming adalah pendekatan di mana alur program ditentukan oleh peristiwa seperti input pengguna, sensor output, atau pesan dari program lain. Dalam konteks JavaScript dan AJAX:
 
-5. Single Page Applications (SPA): Memfasilitasi pembuatan aplikasi web yang berjalan di satu halaman, meningkatkan kecepatan dan responsivitas.
+- Program menunggu dan merespons peristiwa yang terjadi, bukan menjalankan kode secara linear.
+- Event listeners digunakan untuk mendeteksi peristiwa tertentu dan menjalankan fungsi yang sesuai.
+- Memungkinkan interaktivitas yang lebih baik dalam aplikasi web.
 
-6. Cross-platform development: Dengan framework seperti React Native, JavaScript dapat digunakan untuk pengembangan aplikasi mobile lintas platform.
+Contoh penerapan dalam tugas ini:
 
-7. Server-side scripting: Dengan Node.js, JavaScript dapat digunakan untuk pengembangan backend, memungkinkan penggunaan satu bahasa untuk full-stack development.
+Pada tugas ini, paradigma event-driven programming diterapkan dengan menggunakan event listeners untuk menangani peristiwa seperti klik tombol "Add Product" dan "Add Mood". Ketika peristiwa tersebut terjadi, fungsi yang sesuai akan dijalankan untuk menambahkan produk atau mood baru ke dalam daftar. Contoh spesifik mungkin termasuk:
 
-8. Rich user interfaces: Memungkinkan pembuatan antarmuka pengguna yang kaya dan responsif.
+- Event listener pada tombol "Add Product" yang memicu fungsi untuk menambahkan produk baru.
+- Event listener pada form submission yang menangani pengiriman data produk baru ke server menggunakan AJAX.
 
-9. Ekosistem yang luas: JavaScript memiliki banyak library dan framework yang mempercepat dan mempermudah pengembangan.
+### Jelaskan penerapan asynchronous programming pada AJAX.
 
-10. Performa: JavaScript dijalankan di sisi klien, mengurangi beban server dan meningkatkan kecepatan aplikasi secara keseluruhan.
+Penerapan asynchronous programming pada AJAX memungkinkan program untuk melakukan permintaan data ke server tanpa perlu menunggu respons sebelum melanjutkan eksekusi kode lain. Ini dilakukan dengan menggunakan objek XMLHttpRequest atau fungsi fetch() yang mendukung Promise. Beberapa aspek penting:
 
+- AJAX requests berjalan secara asynchronous, tidak memblokir eksekusi kode lain.
+- Callback functions atau Promises digunakan untuk menangani respons dari server.
+- Memungkinkan update parsial halaman web tanpa perlu reload seluruh halaman.
 
-### Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+Dalam tugas ini, asynchronous programming diterapkan dengan menggunakan fungsi fetch() untuk mengambil data produk dari server. Ketika permintaan data selesai, data tersebut kemudian ditampilkan di halaman web tanpa perlu memuat ulang seluruh halaman. Ini meningkatkan responsivitas dan pengalaman pengguna aplikasi web.
 
-Penggunaan `await` dalam konteks `fetch()` memungkinkan kita untuk menunggu respons dari permintaan HTTP tanpa perlu menulis callback atau menggunakan `.then()`. Ini membuat kode lebih mudah dibaca dan diatur.
-
-Jika kita tidak menggunakan `await`, kita akan mendapatkan Promise yang harus kita selesaikan dengan `.then()` atau `catch()`. Ini membutuhkan lebih banyak kode dan kurang efisien.
-
-### Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
-
-Decorator `@csrf_exempt` digunakan untuk mengabaikan keamanan CSRF (Cross-Site Request Forgery) pada view yang terkait. CSRF adalah serangan di mana seseorang mengirimkan permintaan dari situs web yang diandalkan ke situs web lain tanpa diketahui pengguna.
-
-Dengan menggunakan `@csrf_exempt`, kita memberi tahu Django untuk tidak memeriksa token CSRF pada permintaan yang dikirim melalui AJAX POST. Ini memungkinkan permintaan AJAX untuk melewati keamanan CSRF yang biasanya dilakukan oleh Django untuk melindungi dari serangan CSRF.
-
-Namun, perlu diingat bahwa mengabaikan keamanan CSRF dapat membuka j扇门 untuk serangan CSRF. Oleh karena itu, penggunaan `@csrf_exempt` harus dilakukan dengan hati-hati dan hanya pada situasi di mana keamanan tidak menjadi masalah.
-
-### Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
-
-Hal ini dilakukan di backend karena keamanan dan validasi data yang lebih kompleks dan aman tidak dapat dilakukan hanya dengan JavaScript di frontend. Backend memerlukan informasi lebih lengkap tentang konteks permintaan dan validasi yang lebih kompleks.
-
-### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
 #### 1. AJAX GET
 
 ##### Ubahlah kode cards data mood agar dapat mendukung AJAX GET.
 
+Untuk mengubah kode cards data mood agar mendukung AJAX GET, saya melakukan langkah-langkah berikut:
+
+1. Saya menghapus kode Jinja yang sebelumnya digunakan untuk menampilkan cards mood.
+
+2. Saya membuat fungsi JavaScript baru bernama `refreshMoods()` yang akan melakukan permintaan AJAX GET ke endpoint yang menyediakan data mood.
+
+3. Di dalam fungsi `refreshMoods()`, saya menggunakan `fetch()` untuk mengambil data mood dari server.
+
+4. Setelah menerima respons, saya mengonversi data JSON menjadi objek JavaScript.
+
+5. Saya membuat fungsi untuk membuat elemen HTML card mood berdasarkan data yang diterima.
+
+6. Saya menambahkan card mood yang baru dibuat ke dalam container di halaman HTML.
+
+7. Saya memanggil fungsi `refreshMoods()` saat halaman dimuat dan setelah menambahkan mood baru.
+
+8. Saya memastikan bahwa fungsi ini menangani kasus di mana tidak ada mood yang tersedia.
+
+Dengan cara ini, cards data mood sekarang dapat diperbarui secara dinamis menggunakan AJAX GET tanpa perlu memuat ulang seluruh halaman.
+
 ##### Lakukan pengambilan data mood menggunakan AJAX GET. Pastikan bahwa data yang diambil hanyalah data milik pengguna yang logged-in.
+
+Untuk melakukan pengambilan data material menggunakan AJAX GET dan memastikan bahwa data yang diambil hanya milik pengguna yang sedang login, saya melakukan langkah-langkah berikut:
+
+1. Saya membuat fungsi view baru di `views.py` untuk mengembalikan data material dalam format JSON.
+2. Saya menambahkan dekorator `@login_required` untuk memastikan hanya pengguna yang login yang dapat mengakses view ini.
+3. Di dalam view, saya menggunakan filter untuk mengambil hanya material milik pengguna yang sedang login.
+4. Saya mengonversi data material ke format JSON menggunakan `serializers.serialize()`.
+5. Saya menambahkan URL pattern baru di `urls.py` untuk mengarahkan ke view ini.
+6. Di sisi klien, saya menggunakan `fetch()` untuk melakukan permintaan GET ke endpoint yang baru dibuat.
+7. Setelah menerima data, saya memproses dan menampilkan material di halaman web.
 
 #### 2. AJAX POST
 
 ##### Buatlah sebuah tombol untuk menambahkan mood baru.
 
+Untuk membuat tombol menambahkan mood baru:
+
+1. Saya menambahkan elemen button di HTML dengan id yang sesuai.
+2. Saya menambahkan event listener pada tombol tersebut menggunakan JavaScript.
+3. Ketika tombol diklik, saya menampilkan modal atau form untuk input mood baru.
+
 ##### Buatlah fungsi view baru untuk menambahkan mood baru ke dalam basis data.
+
+Untuk membuat fungsi view baru:
+
+1. Saya membuat fungsi baru di `views.py` yang menerima data mood dari request POST.
+2. Saya memvalidasi data yang diterima.
+3. Jika valid, saya membuat objek mood baru dan menyimpannya ke database.
+4. Saya mengembalikan respons JSON yang sesuai.
 
 ##### Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
 
+Untuk membuat path baru:
+
+1. Saya menambahkan URL pattern baru di `urls.py` yang mengarah ke fungsi view yang baru dibuat.
+2. Saya memastikan path ini hanya dapat diakses melalui metode POST.
+
 ##### Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
 
+Untuk menghubungkan form ke path baru:
+
+1. Saya menggunakan `fetch()` untuk mengirim data form ke path `/create-ajax/` menggunakan metode POST.
+2. Saya menangani respons dari server dan memperbarui UI sesuai hasilnya.
+
 ##### Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar mood terbaru tanpa reload halaman utama secara keseluruhan.
+
+Untuk melakukan refresh asinkronus:
+
+1. Setelah berhasil menambahkan mood baru, saya memanggil fungsi `refreshMoods()` yang telah dibuat sebelumnya.
+2. Fungsi ini mengambil data mood terbaru dari server dan memperbarui tampilan tanpa me-reload seluruh halaman.
+
+Dengan mengimplementasikan langkah-langkah di atas, aplikasi sekarang dapat menambahkan mood baru dan memperbarui daftar mood secara asinkronus, meningkatkan responsivitas dan pengalaman pengguna.
