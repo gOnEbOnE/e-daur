@@ -512,13 +512,99 @@ Meskipun validasi di frontend tetap penting untuk UX yang lebih baik dan mengura
 
 #### 1. AJAX GET
 
-##### Ubahlah kode cards data material agar dapat mendukung AJAX GET.
+##### Mengubah kode cards data material agar dapat mendukung AJAX GET.
 
 Untuk mengubah kode cards data material agar mendukung AJAX GET, saya melakukan langkah-langkah berikut:
 
 1. Saya menghapus kode Jinja yang sebelumnya digunakan untuk menampilkan cards material.
-2. Saya membuat fungsi JavaScript baru bernama `refreshMoods()` yang akan melakukan permintaan AJAX GET ke endpoint yang menyediakan data mood.
-3. Di dalam fungsi `refreshMaterialEntries()`, saya menggunakan `fetch()` untuk mengambil data mood dari server.
+2. Saya membuat fungsi JavaScript baru bernama `refreshMaterialEntries()` yang akan melakukan permintaan AJAX GET ke endpoint yang menyediakan data material.
+
+    async function refreshMaterialEntries() {
+    document.getElementById("material_entry_cards").innerHTML = "";
+    document.getElementById("material_entry_cards").className = "";
+    const materialEntries = await getMaterialEntries();
+    let htmlString = "";
+    let classNameString = "";
+
+    if (materialEntries.length === 0) {
+        classNameString = "flex flex-col items-center justify-center min-h-[24rem] p-6";
+        htmlString = `
+            <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+                <img src="{% static 'image/no-materials.gif' %}" alt="Sad face" class="w-32 h-32 mb-4"/>
+                <p class="text-center text-gray-600 mt-4">Belum ada data material pada E-DAUR.</p>
+            </div>
+        `;
+    }
+    else {
+        classNameString = "columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full"
+        materialEntries.forEach((item) => {
+            const nama = DOMPurify.sanitize(item.fields.nama);
+            const deskripsi = DOMPurify.sanitize(item.fields.deskripsi);
+            const harga = DOMPurify.sanitize(item.fields.harga);
+            const rating = item.fields.rating;
+            
+            htmlString += `
+            <div class="relative break-inside-avoid">
+            <div class="absolute top-2 z-10 left-1/2 -translate-x-1/2 flex items-center -space-x-2">
+                <div class="w-[3rem] h-8 bg-gray-200 rounded-md opacity-80 -rotate-90"></div>
+                <div class="w-[3rem] h-8 bg-gray-200 rounded-md opacity-80 -rotate-90"></div>
+            </div>
+            <div class="relative top-5 bg-red-100 shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col border-2 border-red-300 transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                <div class="bg-red-200 text-gray-800 p-4 rounded-t-lg border-b-2 border-red-300">
+                <h3 class="font-bold text-xl mb-2">${nama}</h3>
+                <p class="text-gray-600">${item.fields.time}</p>
+                </div>
+                <div class="p-4">
+                <p class="font-semibold text-lg mb-2">Deskripsi</p>
+                <p class="text-gray-700 mb-2">
+                    <span class="bg-[linear-gradient(to_bottom,transparent_0%,transparent_calc(100%_-_1px),#CDC1FF_calc(100%_-_1px))] bg-[length:100%_1.5rem] pb-1">${deskripsi}</span>
+                </p>
+                <div class="mt-4">
+                    <p class="text-gray-700 font-semibold mb-2">Harga</p>
+                    <p class="text-lg text-gray-800">${harga}</p>
+                </div>
+                <div class="mt-4">
+                    <p class="text-gray-700 font-semibold mb-2">Rating</p>
+                    <div class="flex items-center">
+                    ${[1, 2, 3, 4, 5].map(i => `
+                        ${rating >= i ? `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.518 4.674a1 1 0 00.95.69h4.905c.969 0 1.371 1.24.588 1.81l-3.967 2.879a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.54 1.118l-3.967-2.879a1 1 0 00-1.175 0l-3.967 2.879c-.784.57-1.838-.196-1.54-1.118l1.518-4.674a1 1 0 00-.364-1.118L2.49 9.101c-.784-.57-.38-1.81.588-1.81h4.905a1 1 0 00.95-.69l1.518-4.674z"/>
+                        </svg>
+                        ` : rating > i - 1 ? `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 15.273l-3.9 2.834 1.518-4.674-3.967-2.879h4.905l1.518-4.674L10 6.273l.95-3.003c.3-.922 1.603-.922 1.902 0l1.518 4.674h4.905c.969 0 1.371 1.24.588 1.81L15.986 9.9l1.518 4.674c.3.922-.755 1.688-1.54 1.118L10 12.293l-.95.68v2.3z"/>
+                        </svg>
+                        ` : `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.518 4.674a1 1 0 00.95.69h4.905c.969 0 1.371 1.24.588 1.81l-3.967 2.879a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.54 1.118l-3.967-2.879a1 1 0 00-1.175 0l-3.967 2.879c-.784.57-1.838-.196-1.54-1.118l1.518-4.674a1 1 0 00-.364-1.118L2.49 9.101c-.784-.57-.38-1.81.588-1.81h4.905a1 1 0 00.95-.69l1.518-4.674z"/>
+                        </svg>
+                        `}
+                    `).join('')}
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="absolute top-0 -right-4 flex space-x-1">
+                <a href="/edit-material/${item.pk}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full p-2 transition duration-300 shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                </svg>
+                </a>
+                <a href="/delete/${item.pk}" class="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition duration-300 shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+                </a>
+            </div>
+            </div>
+            `;
+        });
+    }
+    document.getElementById("material_entry_cards").className = classNameString;
+    document.getElementById("material_entry_cards").innerHTML = htmlString;
+    }
+3. Di dalam fungsi `refreshMaterialEntries()`, saya menggunakan `fetch()` untuk mengambil data material dari server.
 4. Setelah menerima respons, saya mengonversi data JSON menjadi objek JavaScript.
 5. Saya membuat fungsi untuk membuat elemen HTML card material berdasarkan data yang diterima.
 6. Saya menambahkan card material yang baru dibuat ke dalam container di halaman HTML.
@@ -532,12 +618,16 @@ Dengan cara ini, cards data mood sekarang dapat diperbarui secara dinamis menggu
 Untuk melakukan pengambilan data material menggunakan AJAX GET dan memastikan bahwa data yang diambil hanya milik pengguna yang sedang login, saya melakukan langkah-langkah berikut:
 
 1. Saya membuat fungsi view baru di `views.py` untuk mengembalikan data material dalam format JSON.
-2. Saya menambahkan dekorator `@login_required` untuk memastikan hanya pengguna yang login yang dapat mengakses view ini.
-3. Di dalam view, saya menggunakan filter untuk mengambil hanya material milik pengguna yang sedang login.
-4. Saya mengonversi data material ke format JSON menggunakan `serializers.serialize()`.
-5. Saya menambahkan URL pattern baru di `urls.py` untuk mengarahkan ke view ini.
-6. Di sisi klien, saya menggunakan `fetch()` untuk melakukan permintaan GET ke endpoint yang baru dibuat.
-7. Setelah menerima data, saya memproses dan menampilkan material di halaman web.
+
+    def show_json(request):
+        data = MaterialEntry.objects.filter(user=request.user)
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+2. Di dalam view, saya menggunakan filter untuk mengambil hanya material milik pengguna yang sedang login.
+3. Saya mengonversi data material ke format JSON menggunakan `serializers.serialize()`.
+4. Saya menambahkan URL pattern baru di `urls.py` untuk mengarahkan ke view ini.
+5. Di sisi klien, saya menggunakan `fetch()` untuk melakukan permintaan GET ke endpoint yang baru dibuat.
+6. Setelah menerima data, saya memproses dan menampilkan material di halaman web.
 
 #### 2. AJAX POST
 
@@ -545,30 +635,82 @@ Untuk melakukan pengambilan data material menggunakan AJAX GET dan memastikan ba
 
 Untuk membuat tombol menambahkan produk baru:
 
-1. Saya menambahkan elemen button di HTML dengan id yang sesuai.
+1. Saya menambahkan elemen button di main.html dengan id yang sesuai.
+
+    function showModal() {
+        const modal = document.getElementById('crudModal');
+        const modalContent = document.getElementById('crudModalContent');
+
+        modal.classList.remove('hidden'); 
+        setTimeout(() => {
+          modalContent.classList.remove('opacity-0', 'scale-95');
+          modalContent.classList.add('opacity-100', 'scale-100');
+        }, 50); 
+    }
 2. Saya menambahkan event listener pada tombol tersebut menggunakan JavaScript.
-3. Ketika tombol diklik, saya menampilkan modal atau form untuk input mood baru.
+3. Ketika tombol diklik, saya menampilkan modal atau form untuk input material baru.
 
 ##### Buatlah fungsi view baru untuk menambahkan produk baru ke dalam basis data.
 
 Untuk membuat fungsi view baru:
 
-1. Saya membuat fungsi baru di `views.py` yang menerima data mood dari request POST.
+    @csrf_exempt
+    @require_POST
+    def add_material_entry_ajax(request):
+        nama = strip_tags(request.POST.get("nama"))
+        harga = strip_tags(request.POST.get("harga"))
+        deskripsi = strip_tags(request.POST.get("deskripsi"))
+        rating = strip_tags(request.POST.get("rating"))
+        user = request.user
+
+        new_material = MaterialEntry(
+            nama=nama, harga=harga, deskripsi=deskripsi,
+            rating=rating,
+            user=user
+        )
+        new_material.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+1. Saya membuat fungsi baru di `views.py` yang menerima data material dari request POST.
 2. Saya memvalidasi data yang diterima.
-3. Jika valid, saya membuat objek mood baru dan menyimpannya ke database.
+3. Jika valid, saya membuat objek material baru dan menyimpannya ke database.
 4. Saya mengembalikan respons JSON yang sesuai.
 
 ##### Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
 
 Untuk membuat path baru:
 
+    urlpatterns=[
+        ...,
+        path('add-material-entry-ajax/', add_material_entry_ajax,  name='add_material_entry_ajax'),
+    ]
 1. Saya menambahkan URL pattern baru di `urls.py` yang mengarah ke fungsi view yang baru dibuat.
 2. Saya memastikan path ini hanya dapat diakses melalui metode POST.
 
 ##### Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
 
 Untuk menghubungkan form ke path baru:
+    function addMaterialEntry() {
+    fetch("{% url 'main:add_material_entry_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#materialEntryForm')),
+    })
+    .then(response => {
+        if (response.ok) {
+        refreshMaterialEntries();
+        document.getElementById("materialEntryForm").reset();
+        hideModal(); // Memanggil fungsi untuk menutup modal
+        } else {
+        console.error('Gagal menyimpan data');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 
+    return false;
+    }
 1. Saya menggunakan `fetch()` untuk mengirim data form ke path `/create-ajax/` menggunakan metode POST.
 2. Saya menangani respons dari server dan memperbarui UI sesuai hasilnya.
 
@@ -576,7 +718,35 @@ Untuk menghubungkan form ke path baru:
 
 Untuk melakukan refresh asinkronus:
 
+    const materialEntries = await getMaterialEntries();
+
+memungkinkan data material di fetch secara asinkronus sebelum menampilkan di halaman. Dengan menggunakan ini data ter-fetch pada background dan ketika data sudah tersedia, halaman akan diperbarui secara dinamis tanpa reload halaman utama secara keseluruhan.
+
 1. Setelah berhasil menambahkan produk baru, saya memanggil fungsi `refreshMaterialEntries()` yang telah dibuat sebelumnya.
+
+    function addMaterialEntry() {
+    fetch("{% url 'main:add_material_entry_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#materialEntryForm')),
+    })
+    .then(response => {
+        if (response.ok) {
+        refreshMaterialEntries();
+        document.getElementById("materialEntryForm").reset();
+        hideModal(); // Memanggil fungsi untuk menutup modal
+        } else {
+        console.error('Gagal menyimpan data');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+    return false;
+    }
+
+
+
 2. Fungsi ini mengambil data produk terbaru dari server dan memperbarui tampilan tanpa me-reload seluruh halaman.
 
 Dengan mengimplementasikan langkah-langkah di atas, aplikasi sekarang dapat menambahkan mood baru dan memperbarui daftar mood secara asinkronus, meningkatkan responsivitas dan pengalaman pengguna.
