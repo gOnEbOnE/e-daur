@@ -4,7 +4,7 @@ from main.views import register
 from main.views import login_user
 from main.views import logout_user
 from main.views import edit_material
-from main.views import delete_material, add_material_entry_ajax
+from main.views import delete_material, add_material_entry_ajax, create_product_flutter
 
 app_name = 'main'
 
@@ -21,4 +21,5 @@ urlpatterns = [
     path('edit-material/<uuid:id>', edit_material, name='edit_material'),
     path('delete/<uuid:id>', delete_material, name='delete_material'), # sesuaikan dengan nama fungsi yang dibuat
     path('add-material-entry-ajax/', add_material_entry_ajax, name='add_material_entry_ajax'),
+    path('create-flutter/', create_product_flutter, name='create_mood_flutter'),
 ]

@@ -1,7 +1,8 @@
+import json
 from django.shortcuts import render, redirect, reverse
 from main.forms import MaterialEntryForm
 from main.models import MaterialEntry
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
@@ -30,6 +31,26 @@ def edit_material(request, id):
 
     context = {'form': form}
     return render(request, "edit_material.html", context)
+
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+        new_product = MaterialEntry.objects.create(
+            user=request.user,
+            nama=data["product"],
+            rating=int(data["rating"]),
+            deskripsi=data["description"],
+            harga=int(data["rating"])
+        )
+
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
+
 def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('main:login'))
